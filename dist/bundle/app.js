@@ -23390,13 +23390,13 @@ exports.Pricing = _Pricing2.default;
 /* 193 */
 /***/ (function(module, exports) {
 
-module.exports = "dist/images/logo-light.png";
+module.exports = "/images/logo-light.png";
 
 /***/ }),
 /* 194 */
 /***/ (function(module, exports) {
 
-module.exports = "dist/images/flag-2.png";
+module.exports = "/images/flag-2.png";
 
 /***/ }),
 /* 195 */
@@ -23826,19 +23826,19 @@ exports.default = Elements;
 /* 196 */
 /***/ (function(module, exports) {
 
-module.exports = "dist/images/promo-1.jpg";
+module.exports = "/images/promo-1.jpg";
 
 /***/ }),
 /* 197 */
 /***/ (function(module, exports) {
 
-module.exports = "dist/images/blog-1.jpg";
+module.exports = "/images/blog-1.jpg";
 
 /***/ }),
 /* 198 */
 /***/ (function(module, exports) {
 
-module.exports = "dist/images/blog-2.jpg";
+module.exports = "/images/blog-2.jpg";
 
 /***/ })
 ],[91]);
