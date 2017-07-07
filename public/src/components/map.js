@@ -1,9 +1,23 @@
 import React from 'react';
+import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 
-export default class Map extends React.Component {
+class Map extends React.Component {
 	render() {
+		var markers = this.props.markers || []
 		return (
-			<div>Map</div>
+				<GoogleMap
+					defaultZoom={3}
+				  defaultCenter={{lat:37.59 , lng:-122.04}}>
+				  {markers.map((marker, index)=>(
+				  		<Marker {...marker} />
+				  	)
+				  )}
+
+
+				</GoogleMap>
 		)
 	}
 }
+
+export default withGoogleMap(Map)
+
