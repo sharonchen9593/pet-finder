@@ -22,4 +22,12 @@
 .map {
   width: 50%;
   height: 85%;
+  float: left;
+}
+
+.searchResults {
+  width: 50%;
+  height: 85%;
+  float: left;
+  padding: 10px;
 }

@@ -6,8 +6,8 @@ class Map extends React.Component {
 		var markers = this.props.markers || []
 		return (
 				<GoogleMap
-					defaultZoom={3}
-				  defaultCenter={{lat:37.59 , lng:-122.04}}>
+					defaultZoom={4}
+				  defaultCenter={{lat:37.0902 , lng:-95.7129}}>
 				  {markers.map((marker, index)=>(
 				  		<Marker {...marker} />
 				  	)
