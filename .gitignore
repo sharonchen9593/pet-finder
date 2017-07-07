@@ -3,9 +3,6 @@
 # Dependencies
 node_modules/
 
-# Compiled output
-build
-
 # Runtime data
 database.sqlite
 
@@ -19,7 +16,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Editors and IDEs
-.idea
+.idea/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

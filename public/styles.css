@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+}
+
+.page {
+  margin-top: 50px;
+}
+
+.searchbox {
+  margin: auto;
+  width: 80%
+}
+
+.search {
+  height: 40px;
+  width: 32%;
+  margin: 3px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
