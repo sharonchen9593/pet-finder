@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class NewEntry extends React.Component {
   constructor(props) {
@@ -34,12 +35,30 @@ export default class NewEntry extends React.Component {
       breed,
       description
     }, function() {
-      this.postData()
+      this.submitData()
     })
   }
 
-  postData() {
-    console.log(this.state)
+  submitData() {
+    console.log("submitting")
+    axios.post('/submitnewentry', JSON.stringify({
+      email: this.state.email,
+      phoneNumber: this.state.phoneNumber,
+      lostOrFound: this.state.lostOrFound,
+      imageStr: this.state.imageStr,
+      location: this.state.location,
+      petName: this.state.petName,
+      dateLostOrFound: this.state.dateLostOrFound,
+      animal: this.state.animal,
+      breed: this.state.breed,
+      description: this.state.description
+    }))
+    .then(function(response) {
+      console.log(response)
+    })
+    .catch(function(err) {
+      console.log(err)
+    })
   }
 
   lostClick() {
