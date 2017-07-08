@@ -6,4 +6,6 @@ var port = process.env.PORT || 3000;
 app.use(express.static(__dirname + '/../public'));
 router(app)
 
-app.listen(port);
+app.listen(port, function() {
+  console.log('Running on localhost:' + port)
+});
