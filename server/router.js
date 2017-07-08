@@ -14,12 +14,26 @@ module.exports=function(app) {
     res.sendFile(path.resolve(__dirname + '/../public/index.html'));
   });
 
-  app.post('/lostandfound', function(req, res) {
+  app.get('/getallentries', (req, res) => {
+    LostAndFound.find({}, function(err, entries) {
+    var entriesMap = [];
+
+    entries.forEach(function(entry) {
+      entriesMap.push(entry)
+    });
+
+    res.send(entriesMap);
+  });
+  });
+
+  app.post('/submitnewentry', (req, res) => {
+    console.log(req.body)
     var newLostAndFound = LostAndFound({
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
       lostOrFound: req.body.lostOrFound,
       imageStr: req.body.imageStr,
+      location: req.body.location,
       petName: req.body.petName,
       dateLostOrFound: req.body.dateLostOrFound,
       animal: req.body.animal,

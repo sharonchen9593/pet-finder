@@ -7,6 +7,7 @@ var lostAndFoundSchema = new Schema({
     phoneNumber: String,
     lostOrFound: String,
     imageStr: String,
+    location: String,
     petName: String,
     dateLostOrFound: String,
     animal: String,

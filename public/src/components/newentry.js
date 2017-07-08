@@ -43,6 +43,12 @@ export default class NewEntry extends React.Component {
           <input type="email" name="imageStr" />
           <br />
 
+          <label>Location:</label>
+          <br />
+
+          <input type="text" name="location" placeholder="Ex: San Francisco, CA" required/>
+          <br />
+
           <label>Pet Name:</label>
           <br />
 
