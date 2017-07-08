@@ -33,8 +33,8 @@ export default class LostAndFoundEntry extends React.Component {
   render() {
     return (
       <div className="entry">
-        <div className="entryImg">
-          <img src={this.state.imageStr} />
+        <div>
+          <img src={this.state.imageStr} className="entryImg"/>
         </div>
         <div className="entryData">
           <h1>{this.state.lostOrFound.toUpperCase()}</h1>

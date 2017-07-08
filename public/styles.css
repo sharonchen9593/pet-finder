@@ -65,13 +65,26 @@
 }
 
 .lost:hover, .found:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.4), 0 10px 24px 0 rgba(0, 0, 0, 0.25);
 }
 
 .entry {
   border: 1px solid black;
+  overflow: hidden;
 }
 
-.entryImg, .entryData {
-  display: inline-block;
+.entryImg {
+  width: 20%;
+  float: left;
+}
+
+.entryData {
+  width: 80%;
+  float: left;
+}
+
+.active {
+  background-color: #6495ed;
+  color: white;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.4), 0 10px 24px 0 rgba(0, 0, 0, 0.25);
 }
