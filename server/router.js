@@ -10,12 +10,15 @@ module.exports=function(app) {
 		res.sendFile(path.resolve(__dirname + '/../public/index.html'));
 	});
 
+  app.get('/newentry', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  });
+
   app.post('/lostandfound', function(req, res) {
     var newLostAndFound = LostAndFound({
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
-      lost: req.body.lost,
-      found: req.body.found,
+      lostOrFound: req.body.lostOrFound,
       imageStr: req.body.imageStr,
       petName: req.body.petName,
       dateLostOrFound: req.body.dateLostOrFound,
@@ -27,5 +30,7 @@ module.exports=function(app) {
       if (err) throw err;
       res.send('Success')
     })
-  })
+  });
+
+
 }

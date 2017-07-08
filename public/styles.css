@@ -31,3 +31,39 @@
   float: left;
   padding: 10px;
 }
+
+.radio {
+  display: inline-block;
+  padding: 0;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.newentry input, textarea {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.newentry {
+  width: 50%;
+  margin: 50px auto;
+}
+
+.entrytype {
+  width: 400px;
+  margin: auto;
+}
+
+.lost, .found {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 1px solid grey;
+  text-align: center;
+  margin: 40px 20px;
+  padding: 10px;
+}
+
+.lost:hover, .found:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

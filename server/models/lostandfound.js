@@ -5,8 +5,7 @@ var Schema = mongoose.Schema;
 var lostAndFoundSchema = new Schema({
     email: String,
     phoneNumber: String,
-    lost: Boolean,
-    found: Boolean,
+    lostOrFound: String,
     imageStr: String,
     petName: String,
     dateLostOrFound: String,

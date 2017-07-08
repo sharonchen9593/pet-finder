@@ -6,6 +6,7 @@ import Main from './main';
 import LostAndFound from './lostandfound';
 import Donate from './donate';
 import Navbar from './navbar';
+import NewEntry from './newentry'
 
 export default class App extends React.Component {
 	render() {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
 						<Route exact path="/" component={Main}></Route>
 						<Route path="/lostandfound" component={LostAndFound}></Route>
 						<Route path="/donate" component={Donate}></Route>
+						<Route path="/newentry" component={NewEntry}></Route>
 				</div>
 			</Router>
 		);
