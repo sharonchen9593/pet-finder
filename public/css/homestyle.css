@@ -1,0 +1,24 @@
+
+
+.homebg {
+  width: 50%;
+  height: 70%;
+  display: inline-block;
+}
+
+.homemap {
+  width: 50%;
+  height: 70%;
+  display: inline-block;
+}
+
+.banner {
+  /*display: inline-block;*/
+  color: white;
+  float: left;
+  background-color: rgba(0,0,0,0.4);
+  background-blend-mode: darken;
+  text-align: center;
+  font-size: 30px;
+  padding: 40px 0;
+}
