@@ -37,7 +37,7 @@ export default class LostAndFoundEntry extends React.Component {
           <img src={this.state.imageStr} className="entryImg"/>
         </div>
         <div className="entryData">
-          <h1>{this.state.lostOrFound.toUpperCase()}</h1>
+          <h2>{this.state.lostOrFound.toUpperCase()}</h2>
           <p>Email: {this.state.email}</p>
           <p>Phone Number: {this.state.phoneNumber}</p>
           <p>Location: {this.state.location}</p>

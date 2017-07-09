@@ -40,7 +40,7 @@ export default class NewEntry extends React.Component {
   }
 
   submitData() {
-    console.log("submitting")
+    alert("Please wait, uploading your post")
     axios.post('/submitnewentry', JSON.stringify({
       email: this.state.email,
       phoneNumber: this.state.phoneNumber,
@@ -54,10 +54,10 @@ export default class NewEntry extends React.Component {
       description: this.state.description
     }))
     .then(function(response) {
-      console.log(response)
+      alert("Your new entry has been submitted")
     })
     .catch(function(err) {
-      console.log(err)
+      alert("Your image is too big, please resize image and try again")
     })
   }
 
@@ -80,7 +80,6 @@ export default class NewEntry extends React.Component {
     var reader  = new FileReader();
 
     var self = this
-
     reader.addEventListener("load", function () {
       preview.src = reader.result;
       self.setState({imageStr: reader.result})
@@ -134,6 +133,7 @@ export default class NewEntry extends React.Component {
 
           <input type="file" onChange={() => this.previewFile()} required></input>
           <img src="" height="200" alt="Image preview..." id="uploadedimg"/>
+          <canvas id="canvas"></canvas>
           <br />
 
           <label>Location:</label>
