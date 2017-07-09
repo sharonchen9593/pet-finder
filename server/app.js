@@ -3,7 +3,8 @@ var app = express();
 var router = require('./router')
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+
 
 var mongoURL = "mongodb://user:user@ds034807.mlab.com:34807/petfinder" || "mongodb://localhost:auth/entries"
 
@@ -17,3 +18,4 @@ router(app)
 app.listen(port, function() {
   console.log('Running on localhost:' + port)
 });
+

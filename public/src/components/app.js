@@ -14,10 +14,10 @@ export default class App extends React.Component {
 			<Router>
 				<div>
 					<Navbar />
-						<Route exact path="/" component={Main}></Route>
-						<Route path="/lostandfound" component={LostAndFound}></Route>
-						<Route path="/donate" component={Donate}></Route>
-						<Route path="/newentry" component={NewEntry}></Route>
+						<Route exact path="/" component={Main} />
+						<Route path="/lostandfound" component={LostAndFound} />
+						<Route path="/donate" component={Donate} />
+						<Route path="/newentry" component={NewEntry} />
 				</div>
 			</Router>
 		);

@@ -1,5 +1,7 @@
 var path = require('path');
 var LostAndFound = require('./models/lostandfound');
+var petfinder = require('pet-finder-api')('e8bc141aa160a7c51a8460be64c1a929','12da585d090d6a12d72dac3dee07eb51');
+
 
 module.exports=function(app) {
 	app.get('/lostandfound', function(req, res){
@@ -45,6 +47,12 @@ module.exports=function(app) {
       res.send('Success')
     })
   });
+
+  app.get('/breed', (req,res) => {
+    petfinder.getBreedList(req.body, function(err, breeds) {
+  console.log(breeds)
+});
+  })
 
 
 }

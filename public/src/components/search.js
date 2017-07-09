@@ -1,7 +1,17 @@
 import React from 'react';
-var petfinder = require('pet-finder-api')('api_key','api_secret');
 
 export default class Search extends React.Component {
+	 getInitialState () {
+    return {
+      breeds: []
+    }
+  }
+
+componentDidMount () {
+    fetch('./search')
+  }
+
+
 	render() {
 		return (
 			<div className="searchbox">
@@ -15,6 +25,7 @@ export default class Search extends React.Component {
 					<option value="reptile">Reptile</option>
 					<option value="barnyard">Barnyard</option>
 				</select>
+
 				<select name="breed" form="search" className="search">
 					<option value="" disabled selected>Select Breed</option>
 				</select>
