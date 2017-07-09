@@ -22,6 +22,7 @@ export default class NewEntry extends React.Component {
     var email = document.getElementsByName('email')[0].value
     var phoneNumber = document.getElementsByName('phoneNumber')[0].value
     var location = document.getElementsByName('location')[0].value
+    var petName = document.getElementsByName('petName')[0].value
     var dateLostOrFound = document.getElementsByName('dateLostOrFound')[0].value
     var animal = document.getElementsByName('animal')[0].value
     var breed = document.getElementsByName('breed')[0].value
@@ -30,6 +31,7 @@ export default class NewEntry extends React.Component {
       email,
       phoneNumber,
       location,
+      petName,
       dateLostOrFound,
       animal,
       breed,
@@ -172,7 +174,7 @@ export default class NewEntry extends React.Component {
           <textarea rows="4" cols="50" name="description" placeholder="Ex: Grey and White. 60 pounds. Last seen at the park chasing a squirrel." required>
           </textarea>
           <br/>
-          <button type="submit">Submit</button>
+          <button type="submit" className="lostandfoundbutton">Submit</button>
         </form>
 
 

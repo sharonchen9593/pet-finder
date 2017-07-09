@@ -10,6 +10,7 @@ export default class LostAndFoundEntry extends React.Component {
       lostOrFound: '',
       imageStr: '',
       location: '',
+      petName: '',
       animal: '',
       breed: '',
       description: ''
@@ -24,6 +25,7 @@ export default class LostAndFoundEntry extends React.Component {
       lostOrFound: entry.lostOrFound,
       imageStr: entry.imageStr,
       location: entry.location,
+      petName: entry.petName,
       animal: entry.animal,
       breed: entry.breed,
       description: entry.description
@@ -37,7 +39,7 @@ export default class LostAndFoundEntry extends React.Component {
           <img src={this.state.imageStr} className="entryImg"/>
         </div>
         <div className="entryData">
-          <h2>{this.state.lostOrFound.toUpperCase()}</h2>
+          <h2>{this.state.lostOrFound.toUpperCase()} - {this.state.petName.toUpperCase()}</h2>
           <p>Email: {this.state.email}</p>
           <p>Phone Number: {this.state.phoneNumber}</p>
           <p>Location: {this.state.location}</p>

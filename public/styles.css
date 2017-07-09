@@ -76,11 +76,13 @@
 .entryImg {
   width: 20%;
   float: left;
+  margin: 30px;
 }
 
 .entryData {
-  width: 80%;
+  width: 70%;
   float: left;
+  margin: 0 20px 20px 20px;
 }
 
 .active {
@@ -92,4 +94,19 @@
 h1 {
   text-align: center;
   margin-top: 100px;
+}
+
+.lostandfoundbutton {
+  width: 100%;
+  margin: 10px 0;
+  background-color: #6495ed;
+  color: white;
+  border: 2px solid #008CBA;
+  transition-duration: 0.4s;
+  font-size: 20px;
+}
+
+.lostandfoundbutton:hover {
+  background-color: white;
+  color: #6495ed;
 }
