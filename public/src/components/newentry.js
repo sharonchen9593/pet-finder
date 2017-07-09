@@ -135,7 +135,6 @@ export default class NewEntry extends React.Component {
 
           <input type="file" onChange={() => this.previewFile()} required></input>
           <img src="" height="200" alt="Image preview..." id="uploadedimg"/>
-          <canvas id="canvas"></canvas>
           <br />
 
           <label>Location:</label>

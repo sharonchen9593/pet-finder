@@ -51,5 +51,3 @@ export default class LostAndFound extends React.Component {
   }
 
 }
-        // {this.entries.map(entry =>
-        //   <LostAndFoundEntry entry={entry}/> )}

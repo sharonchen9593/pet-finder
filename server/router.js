@@ -4,6 +4,19 @@ var petfinder = require('pet-finder-api')('e8bc141aa160a7c51a8460be64c1a929','12
 
 
 module.exports=function(app) {
+
+  app.get('/search', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  });
+
+  app.get('/login', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  });
+
+  app.get('/signup', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  });
+
 	app.get('/lostandfound', function(req, res){
 		res.sendFile(path.resolve(__dirname + '/../public/index.html'));
 	});
