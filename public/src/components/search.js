@@ -1,4 +1,5 @@
 import React from 'react';
+var petfinder = require('pet-finder-api')('api_key','api_secret');
 
 export default class Search extends React.Component {
 	render() {
