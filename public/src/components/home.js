@@ -13,21 +13,32 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      dogs: '0',
-      cats: '0',
-      birds: '0',
-      reptiles: '0',
-      small: '0'
+      pets: '..',
+      shelters: '..',
+      birds: '..',
+      reptiles: '..',
+      small: '..'
     }
   }
   componentDidMount() {
-    // axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/pet.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location=94587&count=1000')
+    // axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/pet.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location=94587&animal=bird&count=1000')
     // .then(function(result) {
     //   console.log(result)
     // })
     // .catch(function(err){
     //   console.log(err)
     // })
+    var self = this
+    $.ajax({
+    url:'https://cors-anywhere.herokuapp.com/' +
+        'https://www.petfinder.com/',
+        type:'GET',
+        success: function(data){
+           var petNumber = $(data).find('#welcome-pet-total').text();
+           var shelterNumber = $(data).find('#welcome-shelter-total').text();
+           self.setState({pets:petNumber, shelters:shelterNumber})
+        }
+    })
   }
 
   render() {
@@ -46,16 +57,22 @@ export default class Home extends React.Component {
         <div className="banner">
         <a href="/search">
           <div className="banneritem" style={{backgroundImage: "url('../../images/dog.jpeg')", height: "100%", width: "14.4%"}}>
-          {this.state.dogs}
+          {this.state.pets}
           <br/>
-          Dogs need a home
+          Pets Need a Home
           </div>
         </a>
         <a href="/search">
           <div className="banneritem" style={{backgroundImage: "url('../../images/cat.jpeg')", height: "100%", width: "14.4%"}}>
-          {this.state.cats}
+          {this.state.shelters}
           <br/>
-          Cats need a home
+          Shelters Need Help
+          </div>
+        </a>
+        <a href="/random">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/smallfurry.jpeg')", height: "100%", width: "14.4%"}}>
+          <br/>
+          Find a Random Pet
           </div>
         </a>
         <a href="/search">
@@ -70,13 +87,6 @@ export default class Home extends React.Component {
           {this.state.reptiles}
           <br/>
           Reptiles need a home
-          </div>
-        </a>
-        <a href="/search">
-          <div className="banneritem" style={{backgroundImage: "url('../../images/smallfurry.jpeg')", height: "100%", width: "14.4%"}}>
-          {this.state.small}
-          <br/>
-          Small animals need a home
           </div>
         </a>
         <a href="/lostandfound">
