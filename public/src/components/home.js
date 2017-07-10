@@ -9,50 +9,63 @@ export default class Home extends React.Component {
     return (
       <div className="page">
         <div className="homebg">
-        RANDOM PICTURE
-        <img src="https://s3-media3.fl.yelpcdn.com/bphoto/nNwtDkoEd7GN5m3f2eCpZg/348s.jpg"/>
+        Save a life, adopt a best friend
         </div>
         <div className="homemap">
           <HomeMap
             containerElement={<div style={{height: '100%'}} />}
             mapElement={<div style={{height: '100%'}} />}/>
         </div>
-
-
-        <div className="banner" style={{backgroundImage: "url('../../images/dog.jpeg')", height: "200px", width: "200px"}}>
-        NUMBER
-        <br/>
-        Dogs need a home
-        </div>
-
-        <div className="banner" style={{backgroundImage: "url('../../images/cat.jpeg')", height: "200px", width: "200px"}}>
-        NUMBER
-        <br/>
-        Cats need a home
-        </div>
-
-        <div className="banner" style={{backgroundImage: "url('../../images/bird.jpeg')", height: "200px", width: "200px"}}>
-        NUMBER
-        <br/>
-        Birds need a home
-        </div>
-
-        <div className="banner" style={{backgroundImage: "url('../../images/reptile.jpeg')", height: "200px", width: "200px"}}>
-        NUMBER
-        <br/>
-        Reptiles need a home
-        </div>
-
-        <div className="banner" style={{backgroundImage: "url('../../images/smallfurry.jpeg')", height: "200px", width: "200px"}}>
-        NUMBER
-        <br/>
-        Small animals need a home
-        </div>
-
-        <div className="banner" style={{backgroundImage: "url('../../images/horse.jpeg')", height: "200px", width: "200px"}}>
-        NUMBER
-        <br/>
-        Horses need a home
+        <div className="banner">
+        <a href="/search">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/dog.jpeg')", height: "100%", width: "14.4%"}}>
+          NUMBER
+          <br/>
+          Dogs need a home
+          </div>
+        </a>
+        <a href="/search">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/cat.jpeg')", height: "100%", width: "14.4%"}}>
+          NUMBER
+          <br/>
+          Cats need a home
+          </div>
+        </a>
+        <a href="/search">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/bird.jpeg')", height: "100%", width: "14.4%"}}>
+          NUMBER
+          <br/>
+          Birds need a home
+          </div>
+        </a>
+        <a href="/search">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/reptile.jpeg')", height: "100%", width: "14.4%"}}>
+          NUMBER
+          <br/>
+          Reptiles need a home
+          </div>
+        </a>
+        <a href="/search">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/smallfurry.jpeg')", height: "100%", width: "14.4%"}}>
+          NUMBER
+          <br/>
+          Small animals need a home
+          </div>
+        </a>
+        <a href="/lostandfound">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/lost.jpeg')",height: "100%", width: "14%"}}>
+          <i className="fa fa-search"></i>
+          <br/>
+            Lost/Found a Pet
+          </div>
+        </a>
+        <a href="/donate">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/donate.jpeg')",height: "100%", width: "14%"}}>
+          <i className="fa fa-gift"></i>
+          <br/>
+            Donate for a cause
+          </div>
+        </a>
         </div>
 
       </div>

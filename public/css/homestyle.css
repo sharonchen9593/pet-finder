@@ -1,24 +1,49 @@
 
 
 .homebg {
-  width: 50%;
+  width: calc(50% + 40px);
   height: 70%;
+  margin-left: -20px;
+  background: url('../images/bg.jpeg');
+  background-color: rgba(0,0,0,0.4);
+  background-blend-mode: darken;
+  background-size: cover;
   display: inline-block;
+  text-align: center;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: 80px;
+  color: white;
+  padding: 50px;
 }
 
 .homemap {
+  margin-right: -20px;
   width: 50%;
   height: 70%;
   display: inline-block;
 }
 
 .banner {
-  /*display: inline-block;*/
+  height: 24%;
+  margin: 0 -20px;
+}
+
+.banneritem {
   color: white;
   float: left;
+  height: 250px;
   background-color: rgba(0,0,0,0.4);
   background-blend-mode: darken;
+  background-size: cover;
+  background-repeat: no-repeat;
   text-align: center;
+  text-shadow: 2px 2px 4px #000000;
   font-size: 30px;
-  padding: 40px 0;
+  padding: 20px 0;
+  transition: 0.4s;
+}
+
+.banneritem:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.3), 4px 6px 20px 4px rgba(0, 0, 0, 0.3);
 }
