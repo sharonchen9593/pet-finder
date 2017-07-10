@@ -46,7 +46,7 @@
   text-shadow: 2px 2px 4px #000000;
   font-size: 30px;
   font-size: calc(1.3vw + 1.3vh);
-  padding: 20px 10px;
+  padding: 30px 10px;
   transition: 0.4s;
 }
 
