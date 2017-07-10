@@ -36,7 +36,9 @@ class Map extends React.Component {
     return (
         <GoogleMap
           defaultZoom={this.state.zoom}
-          defaultCenter={{lat:this.state.lat, lng:this.state.lng}}>
+          defaultCenter={{lat:this.state.lat, lng:this.state.lng}}
+          mapTypeId='roadmap'
+          >
           {markers.map((marker, index)=>(
               <Marker {...marker} />
             )

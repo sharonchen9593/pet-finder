@@ -8,11 +8,11 @@ var bodyParser = require('body-parser');
 
 var mongoURL = "mongodb://user:user@ds034807.mlab.com:34807/petfinder" || "mongodb://localhost:auth/entries"
 
-mongoose.connect(mongoURL);
+mongoose.connect(mongoURL, {useMongoClient:true});
 
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json({type: '*/*', limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended:true}));
 router(app)
 
 app.listen(port, function() {
