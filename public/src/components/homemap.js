@@ -84,7 +84,7 @@ class Map extends React.Component {
 
     var shelterMarkers = [];
     var self = this;
-    axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location=94587&count=100')
+    axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location='+ this.state.zipcode +'&count=100')
     .then(function(res) {
       var shelters = res.data.petfinder.shelters.shelter
       shelters.forEach(function(shelter) {

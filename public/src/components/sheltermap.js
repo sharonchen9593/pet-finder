@@ -31,8 +31,9 @@ class Map extends React.Component {
     var lat = center.lat
     var lng = center.lng
 
-    this.setState({lat, lng})
-    console.log(this.state)
+    this.setState({lat, lng}, this.getZipCode.bind(this))
+
+
 
     // axios.get('http://api.geonames.org/findNearbyPostalCodesJSON?lat='+ lat+ '&lng=' + lng + '&username=furryfriends')
     // .then(function(res){
@@ -59,9 +60,21 @@ class Map extends React.Component {
 
   getZipCode() {
     var self = this
-    axios.get('http://api.geonames.org/findNearbyPostalCodesJSON?lat='+ this.state.lat+ '&lng=' + this.state.lng + '&username=furryfriends')
+    axios.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+this.state.lat + ',' +this.state.lng + '&sensor=false')
     .then(function(res){
-      self.setState({zipcode:res.data.postalCodes[0].postalCode}, self.getShelters.bind(self))
+      console.log(res)
+      var results = res.data.results[0].address_components
+
+      results.forEach(function(item) {
+        if (item.types[0]==="postal_code") {
+          var zipcode = Number(item.long_name)
+          self.setState({zipcode}, self.getShelters.bind(self))
+        }
+      })
+
+
+
+      // self.setState({zipcode:res.data.postalCodes[0].postalCode}, self.getShelters.bind(self))
     })
     .catch(function(err) {
       console.log("err",err)
@@ -73,8 +86,9 @@ class Map extends React.Component {
 
     var shelterMarkers = [];
     var self = this;
-    axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location=94587&count=100')
+    axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location='+ this.state.zipcode +'&count=100')
     .then(function(res) {
+      console.log("res", res)
       var shelters = res.data.petfinder.shelters.shelter
       shelters.forEach(function(shelter) {
         var mark = {position: {lat: Number(shelter.latitude.$t), lng: Number(shelter.longitude.$t)}}
@@ -87,6 +101,10 @@ class Map extends React.Component {
     })
   }
 
+  clickMarker() {
+    console.log("clicked")
+  }
+
   render() {
     var markers = this.state.markers
     return (
@@ -97,7 +115,9 @@ class Map extends React.Component {
           ref={this.mapLoaded.bind(this)}
           >
           {markers.map((marker, index)=>(
-              <Marker {...marker} key={index}/>
+              <Marker {...marker} key={index}
+              onClick={this.clickMarker.bind(this)}
+              />
             )
           )}
         </GoogleMap>
