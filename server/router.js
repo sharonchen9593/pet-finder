@@ -29,6 +29,10 @@ module.exports=function(app) {
     res.sendFile(path.resolve(__dirname + '/../public/index.html'));
   });
 
+  app.get('/random', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  });
+
   app.get('/getallentries', (req, res) => {
     LostAndFound.find({}, function(err, entries) {
     var entriesMap = [];

@@ -56,14 +56,14 @@ export default class Home extends React.Component {
         </div>
         <div className="banner">
         <a href="/search">
-          <div className="banneritem" style={{backgroundImage: "url('../../images/dog.jpeg')", height: "100%", width: "14.4%"}}>
+          <div className="banneritem" style={{backgroundImage: "url('../../images/reptile.jpeg')", height: "100%", width: "14.4%"}}>
           {this.state.pets}
           <br/>
           Pets Need a Home
           </div>
         </a>
         <a href="/search">
-          <div className="banneritem" style={{backgroundImage: "url('../../images/cat.jpeg')", height: "100%", width: "14.4%"}}>
+          <div className="banneritem" style={{backgroundImage: "url('../../images/bird.jpeg')", height: "100%", width: "14.4%"}}>
           {this.state.shelters}
           <br/>
           Shelters Need Help
@@ -76,17 +76,17 @@ export default class Home extends React.Component {
           </div>
         </a>
         <a href="/search">
-          <div className="banneritem" style={{backgroundImage: "url('../../images/bird.jpeg')", height: "100%", width: "14.4%"}}>
+          <div className="banneritem" style={{backgroundImage: "url('../../images/cat.jpeg')", height: "100%", width: "14.4%"}}>
           {this.state.birds}
           <br/>
-          Birds need a home
+          ..
           </div>
         </a>
         <a href="/search">
-          <div className="banneritem" style={{backgroundImage: "url('../../images/reptile.jpeg')", height: "100%", width: "14.4%"}}>
+          <div className="banneritem" style={{backgroundImage: "url('../../images/dog.jpeg')", height: "100%", width: "14.4%"}}>
           {this.state.reptiles}
           <br/>
-          Reptiles need a home
+          ..
           </div>
         </a>
         <a href="/lostandfound">
