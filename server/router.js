@@ -61,10 +61,12 @@ module.exports=function(app) {
     })
   });
 
-  app.get('/breed', (req,res) => {
-    petfinder.getBreedList(req.body, function(err, breeds) {
-  console.log(breeds)
-});
+  app.post('/breed', (req,res) => {
+    console.log(req.body.breed)
+    petfinder.getBreedList(req.body.breed, function(err, breeds) {
+    console.log(breeds);
+    res.send(breeds);
+    });
   })
 
 
