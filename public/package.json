@@ -10,9 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
+    "fs": "0.0.1-security",
     "jquery": "^3.2.1",
     "jsdom": "^11.0.0",
     "lodash": "^4.17.4",
+    "net": "^1.0.2",
+    "pet-finder-api": "^1.0.1",
+    "petfinder": "^0.1.1",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.6.1",
@@ -20,6 +24,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "redux": "^3.7.0"
+    "redux": "^3.7.0",
+    "tls": "0.0.1"
   }
 }

@@ -12,8 +12,14 @@
   text-align: center;
   text-shadow: 2px 2px 4px #000000;
   font-size: 80px;
+  font-size: calc(3.6vw + 3.6vh);
   color: white;
   padding: 50px;
+}
+
+.homesearch {
+  font-size: 20px;
+  font-size: calc(1vw + 1vh);
 }
 
 .homemap {
@@ -39,6 +45,7 @@
   text-align: center;
   text-shadow: 2px 2px 4px #000000;
   font-size: 30px;
+  font-size: calc(1.3vw + 1.3vh);
   padding: 20px 0;
   transition: 0.4s;
 }
@@ -46,4 +53,13 @@
 .banneritem:hover {
   transform: scale(1.05);
   box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.3), 4px 6px 20px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 350px) {
+    .over350 {
+        display: none;
+    }
+    .below350 {
+        display: inline;
+    }
 }
