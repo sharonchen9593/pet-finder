@@ -5,7 +5,10 @@ import axios from 'axios';
 export default class Search extends React.Component {
 	  constructor(props) {
     super(props)
-    this.state = { value : 'dog'}
+    this.state = {
+    	value : 'dog',
+    	breed : ''
+    }
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -20,9 +23,9 @@ export default class Search extends React.Component {
  		axios.post('/breed', {
   		breed: this.state.value
   	})
-  	.then(function (response) {
-    console.log(response.data);
-
+  	.then((response) => {
+   	 console.log(response.data)
+   	 this.setState({breed:response.data})
   })
  	}
 
@@ -30,7 +33,7 @@ export default class Search extends React.Component {
 		return(
 			<form>
 				<label>
-					Choose the Animal:
+					Animal:
 					<select value={this.state.value} onChange={this.handleChange}>
  				  	<option value="dog">Dog</option>
  			  		<option value="cat">Cat</option>
@@ -40,11 +43,16 @@ export default class Search extends React.Component {
 				  	<option value="reptile">Reptile</option>
 				  	<option value="barnyard">Barnyard</option>
 					</select>
+					{this.stateValue()}
 				</label>
 					<label>
 						Breed:
+						<select>
+							<option></option>
+
+						</select>
+
 						</label>
-						{this.stateValue()}
 			</form>
 
 		)
