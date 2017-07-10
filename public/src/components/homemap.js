@@ -8,14 +8,19 @@ class Map extends React.Component {
     this.state={
       lat: 37.0902,
       lng: -95.7129,
-      zoom: 4
+      zoom: 4,
+      location: ''
     }
   }
 
   changeState(lat, lng, zoom) {
 
-    this.setState({lat: lat, lng: lng, zoom: zoom})
-    console.log(this.state.lat, this.state.lng, this.state.zoom)
+    this.setState({lat: lat, lng: lng, zoom: zoom}, this.getPets(lat, lng))
+
+  }
+
+  getPets() {
+    console.log("hi")
   }
 
   componentDidMount() {
@@ -25,7 +30,6 @@ class Map extends React.Component {
       jsonpCallback: "callback",
       dataType: "jsonp",
       success: function( location ) {
-        console.log(location)
         self.changeState(location.latitude, location.longitude, 10)
       }
     });
@@ -35,8 +39,8 @@ class Map extends React.Component {
     var markers = this.props.markers || []
     return (
         <GoogleMap
-          defaultZoom={this.state.zoom}
-          defaultCenter={{lat:this.state.lat, lng:this.state.lng}}
+          zoom={this.state.zoom}
+          center={{lat:this.state.lat, lng:this.state.lng}}
           >
 
           {markers.map((marker, index)=>(
