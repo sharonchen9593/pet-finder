@@ -10,6 +10,7 @@ import NewEntry from './newentry';
 import LogIn from './login';
 import SignUp from './signup';
 import Home from './home';
+import Random from './random';
 
 export default class App extends React.Component {
 	render() {
@@ -24,6 +25,7 @@ export default class App extends React.Component {
 						<Route path="/login" component={LogIn} />
 						<Route path="/signup" component={SignUp} />
 						<Route path="/search" component={Main} />
+						<Route path="/random" component={Random} />
 				</div>
 			</Router>
 		);
