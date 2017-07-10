@@ -1,14 +1,19 @@
 import React from 'react';
-import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
+import {withGoogleMap, GoogleMap, Marker, Circle} from 'react-google-maps';
 import axios from 'axios';
 
 class Map extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      lat: 37.0902,
-      lng: -95.7129,
-      map: null
+      gotLocationShelters: false,
+      zipcode: null,
+      lat: null,
+      lng: null,
+      map: null,
+      markers: [{
+        position: {lat: 37.5963, lng:-122.02175}
+      }]
     }
   }
 
@@ -22,34 +27,72 @@ class Map extends React.Component {
     console.log("hi")
   }
 
-  // componentDidMount() {
-  //   var self = this;
-  //   $.ajax({
-  //     url: "https://geoip-db.com/jsonp",
-  //     jsonpCallback: "callback",
-  //     dataType: "jsonp",
-  //     success: function( location ) {
-  //       console.log(location)
-  //       self.changeState(location.latitude, location.longitude, 10)
-  //     }
-  //   });
-  // }
 
   mapMoved() {
-    console.log('moved', JSON.stringify(this.state.map.getCenter()))
+    var center = JSON.parse(JSON.stringify(this.state.map.getCenter()))
+    var lat = center.lat
+    var lng = center.lng
+
+    this.setState({lat, lng})
+    console.log(this.state)
+
+    // axios.get('http://api.geonames.org/findNearbyPostalCodesJSON?lat='+ lat+ '&lng=' + lng + '&username=furryfriends')
+    // .then(function(res){
+    //   console.log("res",res)
+    // })
+    // .catch(function(err) {
+    //   console.log("err",err)
+    // })
   }
 
   mapLoaded(map) {
     if (this.state.map != null) {
       return
     } else {
-
       this.setState({map})
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.zoom && !this.state.gotLocationShelters) {
+      this.setState({gotLocationShelters:true, lat: this.props.center.lat, lng: this.props.center.lng}, this.getZipCode.bind(this))
+    }
+  }
+
+  getZipCode() {
+    var self = this
+    axios.get('http://api.geonames.org/findNearbyPostalCodesJSON?lat='+ this.state.lat+ '&lng=' + this.state.lng + '&username=furryfriends')
+    .then(function(res){
+      self.setState({zipcode:res.data.postalCodes[0].postalCode}, self.getShelters.bind(self))
+    })
+    .catch(function(err) {
+      console.log("err",err)
+    })
+  }
+
+  getShelters() {
+    console.log("getting shelters", this.state.zipcode)
+
+    var shelterMarkers = [];
+    var self = this;
+    axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location=94587&count=100')
+    .then(function(res) {
+      var shelters = res.data.petfinder.shelters.shelter
+      console.log("success!", shelters)
+      shelters.forEach(function(shelter) {
+        var mark = {position: {lat: Number(shelter.latitude.$t), lng: Number(shelter.longitude.$t)}}
+        shelterMarkers.push(mark)
+      })
+      console.log(shelterMarkers)
+      self.setState({markers: shelterMarkers})
+    })
+    .catch(function(err) {
+      console.log("error", err)
+    })
+  }
+
   render() {
-    var markers = this.props.markers || []
+    var markers = this.state.markers
     return (
         <GoogleMap
           zoom={this.props.zoom}
@@ -57,9 +100,8 @@ class Map extends React.Component {
           onDragEnd={this.mapMoved.bind(this)}
           ref={this.mapLoaded.bind(this)}
           >
-
           {markers.map((marker, index)=>(
-              <Marker {...marker} />
+              <Marker {...marker} key={index}/>
             )
           )}
         </GoogleMap>

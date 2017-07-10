@@ -10,9 +10,9 @@ export default class Home extends React.Component {
     this.state = {
       pets: '..',
       shelters: '..',
-      lat: 37.0902,
-      lng: -95.7129,
-      zoom: 4,
+      lat: null, //37.0902,
+      lng: null, //-95.7129,
+      zoom: null, //4,
       initialLoad: false
 
     }
@@ -45,6 +45,7 @@ export default class Home extends React.Component {
         url: "https://geoip-db.com/jsonp",
         jsonpCallback: "callback",
         dataType: "jsonp",
+        asynce: false,
         success: function( location ) {
           self.changeState(location.latitude, location.longitude, 10)
         }
@@ -60,13 +61,14 @@ export default class Home extends React.Component {
         <a href="/search"><button className="homesearch">Search Now</button></a>
         </div>
 
-        <div className="homemap">
+        <a href="/shelter"><div className="homemap">
           <HomeMap
             center={{lat:this.state.lat, lng: this.state.lng}}
             zoom={this.state.zoom}
             containerElement={<div style={{height: '100%'}} />}
             mapElement={<div style={{height: '100%'}} />}/>
         </div>
+        </a>
 
 
 
@@ -79,7 +81,7 @@ export default class Home extends React.Component {
           Pets Need a Home
           </div>
         </a>
-        <a href="/search">
+        <a href="/shelters">
           <div className="banneritem" style={{backgroundImage: "url('../../images/bird.jpeg')", height: "100%", width: "14.4%"}}>
           {this.state.shelters}
           <br/>
