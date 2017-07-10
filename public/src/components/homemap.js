@@ -8,8 +8,7 @@ class Map extends React.Component {
     this.state={
       lat: 37.0902,
       lng: -95.7129,
-      zoom: 4,
-      location: ''
+      map: null
     }
   }
 
@@ -23,24 +22,40 @@ class Map extends React.Component {
     console.log("hi")
   }
 
-  componentDidMount() {
-    var self = this;
-    $.ajax({
-      url: "https://geoip-db.com/jsonp",
-      jsonpCallback: "callback",
-      dataType: "jsonp",
-      success: function( location ) {
-        self.changeState(location.latitude, location.longitude, 10)
-      }
-    });
+  // componentDidMount() {
+  //   var self = this;
+  //   $.ajax({
+  //     url: "https://geoip-db.com/jsonp",
+  //     jsonpCallback: "callback",
+  //     dataType: "jsonp",
+  //     success: function( location ) {
+  //       console.log(location)
+  //       self.changeState(location.latitude, location.longitude, 10)
+  //     }
+  //   });
+  // }
+
+  mapMoved() {
+    console.log('moved', JSON.stringify(this.state.map.getCenter()))
+  }
+
+  mapLoaded(map) {
+    if (this.state.map != null) {
+      return
+    } else {
+
+      this.setState({map})
+    }
   }
 
   render() {
     var markers = this.props.markers || []
     return (
         <GoogleMap
-          zoom={this.state.zoom}
-          center={{lat:this.state.lat, lng:this.state.lng}}
+          zoom={this.props.zoom}
+          center={this.props.center}
+          onDragEnd={this.mapMoved.bind(this)}
+          ref={this.mapLoaded.bind(this)}
           >
 
           {markers.map((marker, index)=>(
