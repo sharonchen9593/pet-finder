@@ -61,7 +61,7 @@ export default class Home extends React.Component {
         <a href="/search"><button className="homesearch">Search Now</button></a>
         </div>
 
-        <a href="/shelter"><div className="homemap">
+        <a href="/shelters"><div className="homemap">
           <HomeMap
             center={{lat:this.state.lat, lng: this.state.lng}}
             zoom={this.state.zoom}

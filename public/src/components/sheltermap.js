@@ -59,21 +59,9 @@ class Map extends React.Component {
 
   getZipCode() {
     var self = this
-    axios.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+this.state.lat + ',' +this.state.lng + '&sensor=false')
+    axios.get('http://api.geonames.org/findNearbyPostalCodesJSON?lat='+ this.state.lat+ '&lng=' + this.state.lng + '&username=furryfriends')
     .then(function(res){
-      console.log(res)
-      var results = res.data.results[0].address_components
-
-      results.forEach(function(item) {
-        if (item.types[0]==="postal_code") {
-          var zipcode = Number(item.long_name)
-          self.setState({zipcode}, self.getShelters.bind(self))
-        }
-      })
-
-
-
-      // self.setState({zipcode:res.data.postalCodes[0].postalCode}, self.getShelters.bind(self))
+      self.setState({zipcode:res.data.postalCodes[0].postalCode}, self.getShelters.bind(self))
     })
     .catch(function(err) {
       console.log("err",err)
@@ -81,6 +69,7 @@ class Map extends React.Component {
   }
 
   getShelters() {
+    console.log("getting shelters", this.state.zipcode)
 
     var shelterMarkers = [];
     var self = this;

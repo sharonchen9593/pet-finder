@@ -11,7 +11,7 @@ export default class NavBar extends React.Component {
 					</Navbar.Brand>
 					<Nav>
 						<NavItem href="/search">Search Pet</NavItem>
-						<NavItem href="/search">Search Shelters</NavItem>
+						<NavItem href="/shelters">Search Shelters</NavItem>
 					</Nav>
 				</Navbar.Header>
 				<Nav pullRight>
