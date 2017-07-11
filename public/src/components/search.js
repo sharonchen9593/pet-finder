@@ -1,35 +1,44 @@
 import React from 'react';
 import axios from 'axios';
 
-
 export default class Search extends React.Component {
 	  constructor(props) {
     super(props)
     this.state = {
     	value : 'dog',
-    	breed : []
+    	breed : [],
+    	currentSelectedBreed:'',
+    	something : false
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleBreedChange = this.handleBreedChange.bind(this);
   }
 
   handleChange(event) {
   	this.setState({value:event.target.value})
-  	(this.stateValue())()
   }
 
+	handleBreedChange(event) {
+		this.setState({currentSelectedBreed:event.target.value})
+
+	}
+
+
   componentDidMount() {
-    this.stateValue();
+    this.breedPost();
   }
 
   componentDidUpdate(prevProps, prevState) {
-  	  if (prevProps.data !== this.props.data) {
-  	this.stateValue();
-    }
-	}
+  	if(prevState.value !== this.state.value) {
+  		this.breedPost()
+  	}
+  }
 
- 	stateValue() {
- 		if(this.handleChange){
+
+
+ breedPost() {
+
  		axios.post('/breed', {
   		breed: this.state.value
   	})
@@ -39,13 +48,11 @@ export default class Search extends React.Component {
   })
 
  		}
- 	}
 
  	breedList() {
  		this.state.breed.map(function(br){
 							return <option>{br}</option>
 						})
-
  	}
 
 	render() {
@@ -66,7 +73,7 @@ export default class Search extends React.Component {
 				</label>
 					<label>
 						Breed:
-						<select>
+						<select value={this.state.currentSelectedBreed} onChange={this.handleBreedChange}>
 						{this.state.breed.map(function(br){
 							return <option>{br}</option>
 						})}
