@@ -61,7 +61,7 @@ class Map extends React.Component {
 
   getZipCode() {
     var self = this
-    axios.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+this.state.lat + ',' +this.state.lng + '&sensor=false')
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+this.state.lat + ',' +this.state.lng + '&sensor=false')
     .then(function(res){
       console.log(res)
       var results = res.data.results[0].address_components
