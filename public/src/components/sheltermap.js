@@ -16,17 +16,6 @@ class Map extends React.Component {
     }
   }
 
-  changeState(lat, lng, zoom) {
-
-    this.setState({lat: lat, lng: lng, zoom: zoom}, this.getPets(lat, lng))
-
-  }
-
-  getPets() {
-    console.log("hi")
-  }
-
-
   mapMoved() {
     var center = JSON.parse(JSON.stringify(this.state.map.getCenter()))
     var lat = center.lat
@@ -34,15 +23,6 @@ class Map extends React.Component {
 
     this.setState({lat, lng}, this.getZipCode.bind(this))
 
-
-
-    // axios.get('http://api.geonames.org/findNearbyPostalCodesJSON?lat='+ lat+ '&lng=' + lng + '&username=furryfriends')
-    // .then(function(res){
-    //   console.log("res",res)
-    // })
-    // .catch(function(err) {
-    //   console.log("err",err)
-    // })
   }
 
   mapLoaded(map) {
@@ -71,10 +51,6 @@ class Map extends React.Component {
           self.setState({zipcode}, self.getShelters.bind(self))
         }
       })
-
-
-
-      // self.setState({zipcode:res.data.postalCodes[0].postalCode}, self.getShelters.bind(self))
     })
     .catch(function(err) {
       console.log("err",err)
@@ -82,7 +58,6 @@ class Map extends React.Component {
   }
 
   getShelters() {
-
     var shelterMarkers = [];
     var self = this;
     axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location='+ this.state.zipcode +'&count=100')
