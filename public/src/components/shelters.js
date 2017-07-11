@@ -33,6 +33,7 @@ export default class Shelters extends React.Component {
     var self = this;
     axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.getPets?format=json&key=e8bc141aa160a7c51a8460be64c1a929&count=100&id='+shelterId)
     .then(function(res) {
+      console.log(res)
       var pets = res.data.petfinder.pets.pet
       self.setState({currentShelterPets:pets})
 

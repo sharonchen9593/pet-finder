@@ -93,20 +93,6 @@ export default class Home extends React.Component {
           Find a Random <br/> Pet
           </div>
         </a>
-        <a href="/search">
-          <div className="banneritem" style={{backgroundImage: "url('../../images/cat.jpeg')", height: "100%", width: "14.4%"}}>
-          {this.state.birds}
-          <br/>
-          ..
-          </div>
-        </a>
-        <a href="/search">
-          <div className="banneritem" style={{backgroundImage: "url('../../images/dog.jpeg')", height: "100%", width: "14.4%"}}>
-          {this.state.reptiles}
-          <br/>
-          ..
-          </div>
-        </a>
         <a href="/lostandfound">
           <div className="banneritem" style={{backgroundImage: "url('../../images/lost.jpeg')",height: "100%", width: "14%"}}>
           <i className="fa fa-search"></i>
@@ -119,6 +105,18 @@ export default class Home extends React.Component {
           <i className="fa fa-gift"></i>
           <br/>
             Donate for a cause
+          </div>
+        </a>
+        <a href="/login">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/cat.jpeg')", height: "100%", width: "14.4%"}}>
+          <br/>
+          Log In
+          </div>
+        </a>
+        <a href="/signup">
+          <div className="banneritem" style={{backgroundImage: "url('../../images/dog.jpeg')", height: "100%", width: "14.4%"}}>
+          <br/>
+          Sign Up
           </div>
         </a>
         </div>

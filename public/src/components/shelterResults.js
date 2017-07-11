@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import ShelterPetsInfo from './shelterpetsinfo';
+//import ShelterPetsInfo from './shelterpetsinfo';
 
 export default class ShelterResults extends React.Component {
   constructor(props) {
@@ -14,26 +14,10 @@ export default class ShelterResults extends React.Component {
 
   componentDidUpdate() {
     if (!this.state.updated && this.props.shelterData && this.props.shelterData.id) {
-      this.setState({updated: true}/*, this.getPetInfo.bind(this)*/)
+      this.setState({updated: true})
     }
   }
 
-  // getPetInfo() {
-  //     console.log(this.props.shelterData.id.$t)
-  //     var self = this;
-  //     var shelterId = this.props.shelterData.id.$t
-  //     axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.getPets?format=json&key=e8bc141aa160a7c51a8460be64c1a929&count=100&id='+shelterId)
-  //     .then(function(res) {
-  //       console.log("res",res)
-  //       var pets = res.data.petfinder.pets.pet
-  //       self.setState({pets:pets})
-
-  //     })
-  //     .catch(function(err) {
-  //       console.log("err", err)
-  //     })
-
-  // }
 
   getBreed(petInfo) {
     var petBreed=petInfo.breeds.breed
@@ -50,6 +34,26 @@ export default class ShelterResults extends React.Component {
     return breedStr
   }
 
+  getPhoto(petInfo) {
+    if (petInfo.media.photos.photo) {
+      return petInfo.media.photos.photo[3].$t
+    }
+    return '';
+  }
+
+  getOther(pet) {
+    var other = ''
+    if (Array.isArray(pet.options.option)) {
+      var petOptions = []
+      pet.options.option.forEach(function(item) {
+        petOptions.push(item.$t)
+      })
+      other = petOptions.join(', ')
+    } else if (typeof pet.options.option === 'object') {
+      other = pet.options.option.$t
+    }
+    return other;
+  }
 
   render() {
     var shelter = this.props.shelterData;
@@ -64,26 +68,27 @@ export default class ShelterResults extends React.Component {
     else if (this.props.shelterData && this.props.shelterPets) {
       return (
         <div className = "shelterResults">
-          <h2>{shelter.name.$t}</h2>
+          <h2 className="shelterHeading">{shelter.name.$t}</h2>
           <p>Address: {shelter.name.$t}, {shelter.city.$t}, {shelter.state.$t}, {shelter.zip.$t}</p>
           <p>Phone Number: {shelter.phone.$t}</p>
           <p>Email: {shelter.email.$t}</p>
-          <h2>Available Animals:</h2>
-          <p><a href={"https://www.petfinder.com/pet-search?shelterid=" + shelter.id.$t} target="_blank">Click Here</a> for more details about each animal</p>
+          <h2 className="shelterHeading">Available Animals:</h2>
           <br/>
           {pets.map(petInfo=>
 
             <div className="shelterPetInfo" key={petInfo.id.$t}>
               <div className="shelterPetPicture">
-                <img src={petInfo.media.photos.photo[3].$t} />
+                <img src={this.getPhoto(petInfo)} />
               </div>
               <div className="petInfo">
                 <h2>{petInfo.name.$t}</h2>
                 <p>Animal: {petInfo.animal.$t}</p>
                 <p>Breed: {this.getBreed(petInfo)}</p>
-                <p>Gender: {petInfo.sex.$t}</p>
-                <p></p>
+                <p>Size: {petInfo.size.$t}</p>
+                <p>Other: {this.getOther(petInfo)}</p>
+                <p>Id: {petInfo.shelterPetId.$t}</p>
               </div>
+              <div className="shelterPetDescription"><p>Description: {petInfo.description.$t}</p></div>
             </div>
           )}
 
@@ -92,7 +97,3 @@ export default class ShelterResults extends React.Component {
     }
   }
 }
-          // {this.state.pets.map(petInfo =>
-          //   <ShelterPetsInfo petInfo={petInfo} key={petInfo.id.$t}/>
-          // )}
-          // <ShelterPetsInfo petInfo={this.state.pets}/>
