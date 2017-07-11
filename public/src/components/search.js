@@ -8,7 +8,6 @@ export default class Search extends React.Component {
     	value : 'dog',
     	breed : [],
     	currentSelectedBreed:'',
-    	something : false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,6 +29,7 @@ export default class Search extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log(this.state.currentSelectedBreed)
   	if(prevState.value !== this.state.value) {
   		this.breedPost()
   	}
@@ -75,7 +75,7 @@ export default class Search extends React.Component {
 						Breed:
 						<select value={this.state.currentSelectedBreed} onChange={this.handleBreedChange}>
 						{this.state.breed.map(function(br){
-							return <option>{br}</option>
+							return <option value={br}>{br}</option>
 						})}
 
 						</select>
