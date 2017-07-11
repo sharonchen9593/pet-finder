@@ -7,7 +7,7 @@ export default class Search extends React.Component {
     super(props)
     this.state = {
     	value : 'dog',
-    	breed : ''
+    	breed : []
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,15 +18,32 @@ export default class Search extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.stateValue();
+    return (
+  		<option>{this.state.breed}</option>
+  		)
+  }
+
  	stateValue() {
- 		console.log(this.state.value)
+ 		if(this.handleChange){
  		axios.post('/breed', {
   		breed: this.state.value
   	})
   	.then((response) => {
    	 console.log(response.data)
-   	 this.setState({breed:response.data})
+   	 	  this.setState({ breed: response.data });
   })
+
+ 		}
+ 	}
+
+ 	breedList() {
+ 		const breeds = this.state.breed
+ 		const breedList = breeds.map((breed) =>
+ 			<option>{breed}</option>
+ 			)
+
  	}
 
 	render() {
@@ -43,15 +60,16 @@ export default class Search extends React.Component {
 				  	<option value="reptile">Reptile</option>
 				  	<option value="barnyard">Barnyard</option>
 					</select>
-					{this.stateValue()}
+
 				</label>
 					<label>
 						Breed:
 						<select>
-							<option></option>
+						{this.state.breed.map(function(br){
+							return <option>{br}</option>
+						})}
 
 						</select>
-
 						</label>
 			</form>
 
