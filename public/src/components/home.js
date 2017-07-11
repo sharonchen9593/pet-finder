@@ -1,11 +1,6 @@
 import React from 'react';
 import HomeMap from './homemap'
 import axios from 'axios';
-// //import petfinderapi from 'pet-finder-api';
-// // var petfinder = require('petfinder')('e8bc141aa160a7c51a8460be64c1a929','12da585d090d6a12d72dac3dee07eb51')
-// var petfinder = require('pet-finder-api')('e8bc141aa160a7c51a8460be64c1a929','12da585d090d6a12d72dac3dee07eb51')
-
-//https://api.petfinder.com/pet.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location=94587&count=1000
 
 
 
@@ -15,19 +10,14 @@ export default class Home extends React.Component {
     this.state = {
       pets: '..',
       shelters: '..',
-      birds: '..',
-      reptiles: '..',
-      small: '..'
+      lat: null, //37.0902,
+      lng: null, //-95.7129,
+      zoom: null, //4,
+      initialLoad: false
+
     }
   }
   componentDidMount() {
-    // axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/pet.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location=94587&animal=bird&count=1000')
-    // .then(function(result) {
-    //   console.log(result)
-    // })
-    // .catch(function(err){
-    //   console.log(err)
-    // })
     var self = this
     $.ajax({
     url:'https://cors-anywhere.herokuapp.com/' +
@@ -39,21 +29,50 @@ export default class Home extends React.Component {
            self.setState({pets:petNumber, shelters:shelterNumber})
         }
     })
+
+  }
+
+  changeState(lat, lng, zoom) {
+
+    this.setState({lat: lat, lng: lng, zoom: zoom, initialLoad: true, zoom: zoom})
+
   }
 
   render() {
+    if (this.state.initialLoad===false) {
+      var self=this;
+      $.ajax({
+        url: "https://geoip-db.com/jsonp",
+        jsonpCallback: "callback",
+        dataType: "jsonp",
+        asynce: false,
+        success: function( location ) {
+          self.changeState(location.latitude, location.longitude, 10)
+        }
+      });
+    }
+
+
     return (
       <div className="page">
         <div className="homebg">
         Save a life <br/> Adopt a best friend
         <br/>
-        <a href="/search"><button className="homesearch">Search Now</button></a>
+        <a href="/shelters"><button className="homesearch">Search Now</button></a>
         </div>
-        <div className="homemap">
+
+        <a href="/shelters"><div className="homemap">
           <HomeMap
+            center={{lat:this.state.lat, lng: this.state.lng}}
+            zoom={this.state.zoom}
             containerElement={<div style={{height: '100%'}} />}
             mapElement={<div style={{height: '100%'}} />}/>
         </div>
+        </a>
+
+
+
+
         <div className="banner">
         <a href="/search">
           <div className="banneritem" style={{backgroundImage: "url('../../images/reptile.jpeg')", height: "100%", width: "14.4%"}}>
@@ -62,7 +81,7 @@ export default class Home extends React.Component {
           Pets Need a Home
           </div>
         </a>
-        <a href="/search">
+        <a href="/shelters">
           <div className="banneritem" style={{backgroundImage: "url('../../images/bird.jpeg')", height: "100%", width: "14.4%"}}>
           {this.state.shelters}
           <br/>
