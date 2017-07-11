@@ -1,5 +1,6 @@
 import React from 'react';
-import ShelterMap from './sheltermap'
+import ShelterMap from './sheltermap';
+import ShelterResults from './shelterResults';
 
 export default class Shelters extends React.Component {
   constructor(props) {
@@ -8,8 +9,8 @@ export default class Shelters extends React.Component {
       lat: null, //37.0902,
       lng: null, //-95.7129,
       zoom: null, //4,
-      initialLoad: false
-
+      initialLoad: false,
+      currentShelter: null
     }
   }
 
@@ -17,6 +18,13 @@ export default class Shelters extends React.Component {
 
     this.setState({lat: lat, lng: lng, zoom: zoom, initialLoad: true, zoom: zoom})
 
+  }
+
+  clickedShelter(shelterData) {
+    console.log("clicked", shelterData, this.state)
+    this.setState({
+      currentShelter: shelterData
+    })
   }
 
   render() {
@@ -40,11 +48,15 @@ export default class Shelters extends React.Component {
             center={{lat:this.state.lat, lng: this.state.lng}}
             zoom={this.state.zoom}
             containerElement={<div style={{height: '100%'}} />}
-            mapElement={<div style={{height: '100%'}} />}/>
+            mapElement={<div style={{height: '100%'}} />}
+            clickedShelter = {this.clickedShelter.bind(this)}
+            />
 
         </div>
         <div className="searchResults">
-          <div>Shelter Results</div>
+          <ShelterResults
+            shelterData={this.state.currentShelter}
+          />
         </div>
       </div>
     )

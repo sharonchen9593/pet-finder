@@ -11,7 +11,8 @@ class Map extends React.Component {
       lat: null,
       lng: null,
       map: null,
-      markers: []
+      markers: [],
+      shelters: []
     }
   }
 
@@ -94,15 +95,17 @@ class Map extends React.Component {
         var mark = {position: {lat: Number(shelter.latitude.$t), lng: Number(shelter.longitude.$t)}}
         shelterMarkers.push(mark)
       })
-      self.setState({markers: shelterMarkers})
+      self.setState({markers: shelterMarkers, shelters}, function() {
+        console.log(self.state)
+      })
     })
     .catch(function(err) {
       console.log("error", err)
     })
   }
 
-  clickMarker() {
-    console.log("clicked")
+  clickMarker(index) {
+    this.props.clickedShelter(this.state.shelters[index])
   }
 
   render() {
@@ -116,7 +119,7 @@ class Map extends React.Component {
           >
           {markers.map((marker, index)=>(
               <Marker {...marker} key={index}
-              onClick={this.clickMarker.bind(this)}
+              onClick={this.clickMarker.bind(this, index)}
               />
             )
           )}
