@@ -20,10 +20,11 @@ export default class Search extends React.Component {
 
   componentDidMount() {
     this.stateValue();
-    return (
-  		<option>{this.state.breed}</option>
-  		)
   }
+
+  componentDidUpdate() {
+  	this.stateValue();
+	}
 
  	stateValue() {
  		if(this.handleChange){
@@ -39,10 +40,9 @@ export default class Search extends React.Component {
  	}
 
  	breedList() {
- 		const breeds = this.state.breed
- 		const breedList = breeds.map((breed) =>
- 			<option>{breed}</option>
- 			)
+ 		this.state.breed.map(function(br){
+							return <option>{br}</option>
+						})
 
  	}
 
