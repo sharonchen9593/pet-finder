@@ -7,7 +7,7 @@ export default class Search extends React.Component {
     this.state = {
     	value : 'dog',
     	breed : [],
-    	currentSelectedBreed:'',
+    	currentSelectedBreed:'Affenpinscher',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +25,9 @@ export default class Search extends React.Component {
 
 
   componentDidMount() {
+    console.log(this.state.currentSelectedBreed)
     this.breedPost();
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,14 +52,19 @@ export default class Search extends React.Component {
  		}
 
  	breedList() {
- 		this.state.breed.map(function(br){
-							return <option>{br}</option>
-						})
+ 		return(
+
+      this.state.breed.map(function(br){
+              return <option value={br}>{br}</option>
+            })
+      )
  	}
 
 	render() {
 		return(
+
 			<form>
+        <input className="search" type="text" name="zipcode" placeholder="Zip Code"/>
 				<label>
 					Animal:
 					<select value={this.state.value} onChange={this.handleChange}>
@@ -74,9 +81,7 @@ export default class Search extends React.Component {
 					<label>
 						Breed:
 						<select value={this.state.currentSelectedBreed} onChange={this.handleBreedChange}>
-						{this.state.breed.map(function(br){
-							return <option value={br}>{br}</option>
-						})}
+						{this.breedList()}
 
 						</select>
 						</label>
@@ -85,23 +90,3 @@ export default class Search extends React.Component {
 		)
 	}
 }
-
-
-
-// <div className="searchbox">
-// 				<select name="animal" onClick->
-// 					<option value="" disabled selected>Select Animal</option>
-// 					<option value="dog">Dog</option>
-// 					<option value="cat">Cat</option>
-// 					<option value="smallfurry">Small & Furry</option>
-// 					<option value="horse">Horse</option>
-// 					<option value="bird">Bird</option>
-// 					<option value="reptile">Reptile</option>
-// 					<option value="barnyard">Barnyard</option>
-// 				</select>
-
-// 				<select name="breed" form="search" className="search">
-// 					<option value="" disabled selected>Select Breed</option>
-// 				</select>
-// 				<input className="search" type="text" name="zipcode" placeholder="Zip Code"/>
-// 			</div>
