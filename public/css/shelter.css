@@ -3,6 +3,21 @@
    overflow: scroll; /* Optionally you can also use overflow: scroll; */
 }
 
+.shelterMap {
+  margin-left: -20px;
+  width: 50%;
+  height: 94%;
+  float: left;
+}
+
+.shelterSearchResults {
+  margin-right: -20px;
+  padding: 10px;
+  width: 50%;
+  height: 94%;
+  float: left;
+}
+
 .shelterPetInfo {
   border: 1px solid black;
   padding: 10px;

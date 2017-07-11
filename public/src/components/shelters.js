@@ -1,6 +1,7 @@
 import React from 'react';
 import ShelterMap from './sheltermap';
 import ShelterResults from './shelterResults';
+import axios from 'axios';
 
 export default class Shelters extends React.Component {
   constructor(props) {
@@ -24,6 +25,20 @@ export default class Shelters extends React.Component {
   clickedShelter(shelterData) {
     this.setState({
       currentShelter: shelterData
+    }, this.getCurrentShelterPets.bind(this))
+  }
+
+  getCurrentShelterPets() {
+    var shelterId = this.state.currentShelter.id.$t
+    var self = this;
+    axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.getPets?format=json&key=e8bc141aa160a7c51a8460be64c1a929&count=100&id='+shelterId)
+    .then(function(res) {
+      var pets = res.data.petfinder.pets.pet
+      self.setState({currentShelterPets:pets})
+
+    })
+    .catch(function(err) {
+      console.log("err", err)
     })
   }
 
@@ -43,7 +58,7 @@ export default class Shelters extends React.Component {
 
     return (
       <div className="page">
-        <div className="map">
+        <div className="sheltermap">
           <ShelterMap
             center={{lat:this.state.lat, lng: this.state.lng}}
             zoom={this.state.zoom}
@@ -53,9 +68,10 @@ export default class Shelters extends React.Component {
             />
 
         </div>
-        <div className="searchResults">
+        <div className="shelterSearchResults">
           <ShelterResults
             shelterData={this.state.currentShelter}
+            shelterPets={this.state.currentShelterPets}
           />
         </div>
       </div>
