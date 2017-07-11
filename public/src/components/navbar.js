@@ -16,7 +16,7 @@ export default class NavBar extends React.Component {
 				</Navbar.Header>
 				<Nav pullRight>
 					<NavItem href="/lostandfound">Lost and Found</NavItem>
-					<NavItem href="/donate">Donate</NavItem>
+					<NavItem href="/donate">Donate/Fundraise</NavItem>
 					<NavItem href="/login">Log In</NavItem>
 					<NavItem href="/signup">Sign Up</NavItem>
 

@@ -43,7 +43,7 @@ export default class LostAndFound extends React.Component {
 	render() {
 		return (
 			<div className="page">
-  			<h1>Lost and Found</h1>
+  			<h1 className="lostandFoundHeader">Lost and Found</h1>
         <a href="/newentry"><button className="lostandfoundbutton">New Entry</button></a>
         {this.renderEntries()}
       </div>

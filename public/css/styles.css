@@ -70,18 +70,32 @@
 }
 
 .entrytype {
-  width: 400px;
+  width: 500px;
   margin: auto;
 }
 
 .lost, .found {
   display: inline-block;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border: 1px solid grey;
+  font-size: 20px;
   text-align: center;
   margin: 40px 20px;
   padding: 10px;
+  overflow: hidden;
+}
+
+.supplies, .funds {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid grey;
+  font-size: 15px;
+  text-align: center;
+  margin: 40px 20px;
+  padding: 10px;
+  overflow: hidden;
 }
 
 .lost:hover, .found:hover {
@@ -113,7 +127,7 @@
 
 h1 {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .lostandfoundbutton {
@@ -138,4 +152,8 @@ h1 {
   background-color: white;
   opacity: 0.95;
   color: black;
+}
+
+.lostandFoundHeader {
+  margin-top: 100px
 }
