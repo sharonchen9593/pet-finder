@@ -63,7 +63,6 @@ class Map extends React.Component {
     var self = this
     axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+this.state.lat + ',' +this.state.lng + '&sensor=false')
     .then(function(res){
-      console.log(res)
       var results = res.data.results[0].address_components
 
       results.forEach(function(item) {
@@ -83,21 +82,17 @@ class Map extends React.Component {
   }
 
   getShelters() {
-    console.log("getting shelters", this.state.zipcode)
 
     var shelterMarkers = [];
     var self = this;
     axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location='+ this.state.zipcode +'&count=100')
     .then(function(res) {
-      console.log("res", res)
       var shelters = res.data.petfinder.shelters.shelter
       shelters.forEach(function(shelter) {
         var mark = {position: {lat: Number(shelter.latitude.$t), lng: Number(shelter.longitude.$t)}}
         shelterMarkers.push(mark)
       })
-      self.setState({markers: shelterMarkers, shelters}, function() {
-        console.log(self.state)
-      })
+      self.setState({markers: shelterMarkers, shelters})
     })
     .catch(function(err) {
       console.log("error", err)

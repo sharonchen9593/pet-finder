@@ -10,7 +10,8 @@ export default class Shelters extends React.Component {
       lng: null, //-95.7129,
       zoom: null, //4,
       initialLoad: false,
-      currentShelter: null
+      currentShelter: null,
+      currentShelterPets: null
     }
   }
 
@@ -21,7 +22,6 @@ export default class Shelters extends React.Component {
   }
 
   clickedShelter(shelterData) {
-    console.log("clicked", shelterData, this.state)
     this.setState({
       currentShelter: shelterData
     })
