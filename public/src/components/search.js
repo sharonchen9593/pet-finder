@@ -15,15 +15,17 @@ export default class Search extends React.Component {
 
   handleChange(event) {
   	this.setState({value:event.target.value})
-
+  	(this.stateValue())()
   }
 
   componentDidMount() {
     this.stateValue();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+  	  if (prevProps.data !== this.props.data) {
   	this.stateValue();
+    }
 	}
 
  	stateValue() {
