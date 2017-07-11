@@ -1,0 +1,30 @@
+.randomImg {
+  align-content: center;
+  text-align: center;
+}
+
+.randomInfoText {
+  padding: 20px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.randomInfo {
+  background-color: white;
+  width: 60%;
+  margin: 100px auto 30px auto;
+  padding: 10px;
+}
+
+.random {
+  padding-bottom: 50px;
+  background: url('https://images.pexels.com/photos/2946/dawn-nature-sunset-trees.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: -50px -20px;
+  padding: 100px;
+}
+
+.meetRandom {
+  text-align: center;
+}
