@@ -18,7 +18,7 @@
 
 .random {
   padding-bottom: 50px;
-  background: url('https://images.pexels.com/photos/2946/dawn-nature-sunset-trees.jpg');
+  background: linear-gradient(white, #6495ed);
   background-size: cover;
   background-repeat: no-repeat;
   margin: -50px -20px;

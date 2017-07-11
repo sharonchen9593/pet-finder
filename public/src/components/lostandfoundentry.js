@@ -11,6 +11,7 @@ export default class LostAndFoundEntry extends React.Component {
       imageStr: '',
       location: '',
       petName: '',
+      date: '',
       animal: '',
       breed: '',
       description: ''
@@ -25,6 +26,7 @@ export default class LostAndFoundEntry extends React.Component {
       lostOrFound: entry.lostOrFound,
       imageStr: entry.imageStr,
       location: entry.location,
+      date: entry.dateLostOrFound,
       petName: entry.petName,
       animal: entry.animal,
       breed: entry.breed,
@@ -45,6 +47,7 @@ export default class LostAndFoundEntry extends React.Component {
           <p>Location: {this.state.location}</p>
           <p>Animal Type: {this.state.animal}</p>
           <p>Breed: {this.state.breed}</p>
+          <p>Date {this.state.lostOrFound}: {this.state.date}</p>
           <p>Description: {this.state.description}</p>
         </div>
 
