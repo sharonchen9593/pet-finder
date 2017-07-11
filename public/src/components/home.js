@@ -58,7 +58,7 @@ export default class Home extends React.Component {
         <div className="homebg">
         Save a life <br/> Adopt a best friend
         <br/>
-        <a href="/search"><button className="homesearch">Search Now</button></a>
+        <a href="/shelters"><button className="homesearch">Search Now</button></a>
         </div>
 
         <a href="/shelters"><div className="homemap">
