@@ -1,6 +1,7 @@
 var path = require('path');
 var LostAndFound = require('./models/lostandfound');
 var petfinder = require('pet-finder-api')('e8bc141aa160a7c51a8460be64c1a929','12da585d090d6a12d72dac3dee07eb51');
+var Fundraiser = require('./models/donations');
 
 
 module.exports=function(app) {
@@ -54,7 +55,6 @@ module.exports=function(app) {
   });
 
   app.post('/submitnewentry', (req, res) => {
-    console.log(req.body)
     var newLostAndFound = LostAndFound({
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
@@ -68,6 +68,25 @@ module.exports=function(app) {
       description: req.body.description
     });
     newLostAndFound.save(function(err) {
+      if (err) throw err;
+      res.send('Success')
+    })
+  });
+
+  app.post('/submitnewfundraiser', (req, res) => {
+    var newFundraiser = Fundraiser({
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
+      suppliesOrFunds: req.body.suppliesOrFunds,
+      title: req.body.title,
+      description: req.body.description,
+      imageStr: req.body.imageStr,
+      location: req.body.location,
+      venmo: req.body.venmo,
+      paypal: req.body.paypal,
+      goal: req.body.goal
+    });
+    newFundraiser.save(function(err) {
       if (err) throw err;
       res.send('Success')
     })

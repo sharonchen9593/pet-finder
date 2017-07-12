@@ -7,63 +7,73 @@ export default class NewFund extends React.Component {
     this.state={
       email: '',
       phoneNumber: '',
-      suppliesOrFunds: 'lost',
+      suppliesOrFunds: 'supplies',
       title: '',
       description: '',
       imageStr: '',
-      location: ''
+      location: '',
+      venmo: '',
+      paypal: '',
+      goal: ''
     }
   }
 
   handleSubmit(e) {
-    // e.preventDefault();
-    // var email = document.getElementsByName('email')[0].value
-    // var phoneNumber = document.getElementsByName('phoneNumber')[0].value
-    // var location = document.getElementsByName('location')[0].value
-    // var suppliesOrFunds = document.getElementsByName('suppliesOrFunds')[0].value
-    // var title = document.getElementsByName('title')[0].value
-    // var description = document.getElementsByName('description')[0].value
-    // this.setState({
-    //   email,
-    //   phoneNumber,
-    //   location,
-    //   suppliesOrFunds,
-    //   title,
-    //   description
-    // }, function() {
-    //   this.submitData()
-    // })
+    e.preventDefault();
+    var email = document.getElementsByName('email')[0].value
+    var phoneNumber = document.getElementsByName('phoneNumber')[0].value
+    var location = document.getElementsByName('location')[0].value
+    var title = document.getElementsByName('title')[0].value
+    var venmo = document.getElementsByName('venmo')[0].value
+    var paypal = document.getElementsByName('paypal')[0].value
+    var goal = document.getElementsByName('goal')[0].value
+    var description = document.getElementsByName('description')[0].value
+    this.setState({
+      email,
+      phoneNumber,
+      location,
+      title,
+      venmo,
+      paypal,
+      description,
+      goal
+    }, function() {
+      this.submitData()
+    })
   }
 
   submitData() {
-    // alert("Please wait, uploading your post")
-    // axios.post('/submitnewentry', JSON.stringify({
-    //   email: this.state.email,
-    //   phoneNumber: this.state.phoneNumber,
-    //   suppliesOrFunds: this.state.suppliesOrFunds,
-    //   imageStr: this.state.imageStr,
-    //   location: this.state.location,
-    //   title: this.state.title,
-    //   description: this.state.description
-    // }))
-    // .then(function(response) {
-    //   alert("Your new entry has been submitted")
-    // })
-    // .catch(function(err) {
-    //   alert("Your image is too big, please resize image and try again")
-    // })
+    alert("Please wait, uploading your post")
+    axios.post('/submitnewfundraiser', JSON.stringify({
+      email: this.state.email,
+      phoneNumber: this.state.phoneNumber,
+      suppliesOrFunds: this.state.suppliesOrFunds,
+      title: this.state.title,
+      description: this.state.description,
+      imageStr: this.state.imageStr,
+      location: this.state.location,
+      venmo: this.state.venmo,
+      paypal: this.state.paypal,
+      goal: this.state.goal
+    }))
+    .then(function(response) {
+      alert("Your new entry has been submitted")
+    })
+    .catch(function(err) {
+      alert("Your image is too big, please resize image and try again")
+    })
   }
 
   suppliesClick() {
     $(".found").removeClass("active")
     $(".lost").addClass("active")
-    this.setState({lostOrFound: "lost"})
+    this.setState({suppliesOrFunds: "supplies"})
   }
 
   fundsClick() {
     $(".found").addClass("active")
     $(".lost").removeClass("active")
-    this.setState({lostOrFound: "found"})
+    this.setState({suppliesOrFunds: "funds"})
 
   }
 
@@ -121,10 +131,10 @@ export default class NewFund extends React.Component {
           <input type="text" name="phoneNumber" />
           <br />
 
-          <label>Image:</label>
+          <label>Image (optional):</label>
           <br />
 
-          <input type="file" onChange={() => this.previewFile()} required></input>
+          <input type="file" onChange={() => this.previewFile()}></input>
           <img src="" height="200" alt="Image preview..." id="uploadedimg"/>
           <br />
 
@@ -134,18 +144,34 @@ export default class NewFund extends React.Component {
           <input type="text" name="title" placeholder="Ex: Fluffy's Medical Expenses" required/>
           <br />
 
-          <label>Location:</label>
+          <label>Location for supply drop off (optional):</label>
           <br />
 
-          <input type="text" name="location" placeholder="Ex: San Francisco, CA" required/>
+          <input type="text" name="location" placeholder="Ex: 123 Furry Friends St, San Francisco, CA"/>
           <br />
 
+          <label>Email accociated with your PayPal (optional):</label>
+          <br />
 
+          <input type="email" name="paypal"/>
+          <br />
+
+          <label>Venmo Username (optional):</label>
+          <br />
+
+          <input type="text" name="venmo" />
+          <br />
+
+          <label>Goal (optional):</label>
+          <br />
+
+          <input type="number" name="goal" placeholder="Ex: $1000"/>
+          <br />
 
           <label>Description:</label>
           <br />
 
-          <textarea rows="4" cols="50" name="description" placeholder="Ex: Fluffy is sick." required>
+          <textarea rows="4" cols="50" name="description" placeholder="Ex: Fluffy is sick :(. Need money for his medical bill." required>
           </textarea>
           <br/>
           <button type="submit" className="lostandfoundbutton">Submit</button>
