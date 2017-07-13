@@ -36,6 +36,7 @@
     "react": "^15.6.1",
     "react-progress-bar-component": "^1.1.4",
     "react-progressbar": "^1.4.6",
+    "react-redux": "^5.0.5",
     "webpack": "^3.0.0"
   }
 }

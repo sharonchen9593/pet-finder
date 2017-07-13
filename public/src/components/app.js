@@ -8,7 +8,7 @@ import Donate from './donate';
 import Navbar from './navbar';
 import NewEntry from './newentry';
 import LogIn from './login';
-import SignUp from './signup';
+import Signup from './signup';
 import Home from './home';
 import Random from './random';
 import Shelters from './shelters';
@@ -25,7 +25,7 @@ export default class App extends React.Component {
 						<Route path="/donate" component={Donate} />
 						<Route path="/newentry" component={NewEntry} />
 						<Route path="/login" component={LogIn} />
-						<Route path="/signup" component={SignUp} />
+						<Route path='/signup' component={Signup}/>
 						<Route path="/search" component={Main} />
 						<Route path="/random" component={Random} />
 						<Route path="/shelters" component={Shelters} />
