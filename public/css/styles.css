@@ -157,3 +157,8 @@ h1 {
 .lostandFoundHeader {
   margin-top: 100px
 }
+
+.progress {
+  height: 50px;
+  width: 300px;
+}

@@ -14,7 +14,8 @@ export default class NewFund extends React.Component {
       location: '',
       venmo: '',
       paypal: '',
-      goal: ''
+      goal: '',
+      donationsReceived: 0
     }
   }
 
@@ -54,7 +55,8 @@ export default class NewFund extends React.Component {
       location: this.state.location,
       venmo: this.state.venmo,
       paypal: this.state.paypal,
-      goal: this.state.goal
+      goal: this.state.goal,
+      donationsReceived: this.state.donationsReceived
     }))
     .then(function(response) {
       alert("Your new entry has been submitted")

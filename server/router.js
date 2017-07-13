@@ -77,7 +77,8 @@ module.exports=function(app) {
       dateLostOrFound: req.body.dateLostOrFound,
       animal: req.body.animal,
       breed: req.body.breed,
-      description: req.body.description
+      description: req.body.description,
+      donationsReceived: 0
     });
     newLostAndFound.save(function(err) {
       if (err) throw err;
@@ -96,7 +97,8 @@ module.exports=function(app) {
       location: req.body.location,
       venmo: req.body.venmo,
       paypal: req.body.paypal,
-      goal: req.body.goal
+      goal: req.body.goal,
+      donationsReceived: req.body.donationsReceived
     });
     newFundraiser.save(function(err) {
       if (err) throw err;

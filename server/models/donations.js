@@ -12,7 +12,8 @@ var donationsSchema = new Schema({
     venmo: String,
     paypal: String,
     description: String,
-    goal: String
+    goal: String,
+    donationsReceived: Number
 });
 
 var donations = mongoose.model('Donations', donationsSchema);
