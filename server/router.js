@@ -106,6 +106,12 @@ module.exports=function(app) {
     })
   });
 
+  app.post('/newdonation', (req, res) => {
+    Fundraiser.findOneAndUpdate({_id:req.body._id},{$set:{donationsReceived:req.body.amountDonated}}, (err) => {
+      res.send("success")
+    })
+  });
+
   app.post('/breed', (req,res) => {
     console.log(req.body.breed)
     petfinder.getBreedList(req.body.breed, function(err, breeds) {

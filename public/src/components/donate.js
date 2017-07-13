@@ -32,7 +32,11 @@ export default class Donate extends React.Component {
     if (this.state.entries.length>0) {
       return (
         <div>
-        {this.state.entries.map(entry => <FundraiserEntry entry={entry} key = {entry._id}/>)}
+        {this.state.entries.map(entry => <FundraiserEntry
+          entry={entry}
+          key = {entry._id}
+          getEntries={this.getEntries.bind(this)}
+          />)}
         </div>
       )
     } else {
