@@ -2,9 +2,18 @@ var path = require('path');
 var LostAndFound = require('./models/lostandfound');
 var petfinder = require('pet-finder-api')('e8bc141aa160a7c51a8460be64c1a929','12da585d090d6a12d72dac3dee07eb51');
 var Fundraiser = require('./models/donations');
-
+var Authentication = require('./controllers/authentication');
+var passportService = require('./services/passport');
+var passport = require('passport');
+var User = require('./models/user');
 
 module.exports=function(app) {
+
+var requireAuth = passport.authenticate('jwt', {session: false});
+var requireSignin = passport.authenticate('local', {session: false});
+
+var currentUser = ""
+
 
   app.get('/search', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../public/index.html'));
@@ -12,6 +21,10 @@ module.exports=function(app) {
 
   app.get('/login', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  });
+
+  app.get('/signin', function(req, res){
+    res.sendFile(__dirname + '/public/index.html');
   });
 
   app.get('/signup', function(req, res){
@@ -50,8 +63,12 @@ module.exports=function(app) {
       entriesMap.push(entry)
     });
 
-    res.send(entriesMap);
+      res.send(entriesMap);
+      });
   });
+
+    app.get('/signout', function(req, res){
+    res.sendFile(__dirname + '/public/index.html');
   });
 
   app.get('/getallfundraiserentries', (req, res) => {
@@ -65,6 +82,23 @@ module.exports=function(app) {
     res.send(entriesMap);
   });
   });
+
+  //POST Requests
+
+  app.post('/signin', requireSignin, Authentication.signin, function(req, res) {
+    console.log(req)
+  });
+
+  app.post('/signup', Authentication.signup);
+
+  app.post('/userData', function(req, res) {
+    var body =req.body;
+    User.findOne({username:body.username}, function(err, user) {
+      res.json(user)
+    })
+  })
+
+
 
   app.post('/submitnewentry', (req, res) => {
     var newLostAndFound = LostAndFound({
@@ -119,6 +153,7 @@ module.exports=function(app) {
     res.send(breeds);
     });
   })
+
 
 
 }

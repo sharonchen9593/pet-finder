@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",
@@ -35,6 +36,7 @@
     "react": "^15.6.1",
     "react-progress-bar-component": "^1.1.4",
     "react-progressbar": "^1.4.6",
+    "react-redux": "^5.0.5",
     "webpack": "^3.0.0"
   }
 }
