@@ -32,6 +32,7 @@
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
     "pet-finder-api": "^1.0.1",
+    "react": "^15.6.1",
     "webpack": "^3.0.0"
   }
 }

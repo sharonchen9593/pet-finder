@@ -54,6 +54,18 @@ module.exports=function(app) {
   });
   });
 
+  app.get('/getallfundraiserentries', (req, res) => {
+    Fundraiser.find({}, function(err, entries) {
+    var entriesMap = [];
+
+    entries.forEach(function(entry) {
+      entriesMap.push(entry)
+    });
+
+    res.send(entriesMap);
+  });
+  });
+
   app.post('/submitnewentry', (req, res) => {
     var newLostAndFound = LostAndFound({
       email: req.body.email,

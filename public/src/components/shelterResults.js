@@ -61,7 +61,7 @@ export default class ShelterResults extends React.Component {
     if (!this.props.shelterData || !this.props.shelterPets) {
       return (
         <div>
-          <h1>Please click on an animal shelter to see Animal Shelter information.</h1>
+          <h1>Please click on an animal shelter to see the animal shelter information and their pet list.</h1>
         </div>
       )
     }
