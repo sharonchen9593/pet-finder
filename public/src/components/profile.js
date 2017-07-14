@@ -47,6 +47,7 @@ export default class Profile extends React.Component {
         </div>
         <div className = "content2">
           <p>currently working on adding more features. please checkback soon.</p>
+          <a href="/signout"><button>Sign Out</button></a>
         </div>
       </div>
     );
