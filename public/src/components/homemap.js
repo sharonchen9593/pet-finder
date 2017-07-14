@@ -106,7 +106,8 @@ class Map extends React.Component {
           center={this.props.center}
           onDragEnd={this.mapMoved.bind(this)}
           ref={this.mapLoaded.bind(this)}
-          options={{draggable: false}}          >
+          options={{draggable: false}}
+          >
           {markers.map((marker, index)=>(
               <Marker {...marker} key={index}/>
             )

@@ -4,7 +4,6 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import {connect} from 'react-redux';
 import {userSigninRequest} from '../../actions';
-import {Nav,Navbar,NavDropdown, MenuItem, NavItem} from 'react-bootstrap'
 
 
 class LogIn extends React.Component {
@@ -13,7 +12,7 @@ class LogIn extends React.Component {
 
     this.state = {
       authenticated: false,
-      username: '',
+      email: '',
       password: ''
     }
   }
@@ -24,34 +23,24 @@ class LogIn extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    var username = this.state.username;
+    var email = this.state.email;
     var password = this.state.password;
-    console.log(username, password);
+    console.log(email, password);
     var self = this;
-    this.props.userSigninRequest(this.state);    // for redux thunk
-    // axios.post('/signin', {username, password})
-    // .then(function(response) {
-    //  console.log(response)
-    //  self.setState({authenticated: true, redirect: true})
-    //  localStorage.setItem('token', response.token)
-    // })
-    // .catch(function(error) {
-    //  alert("Invalid Username/Password")
-    // })
+    this.props.userSigninRequest(this.state);
   }
 
   render() {
     let {isSigninSuccess, signinError} = this.props;
-
     return (
-      <form onSubmit = {this.onSubmit.bind(this)} className="signinform">
+      <form className="loginform" onSubmit = {this.onSubmit.bind(this)}>
         <h1>Log In</h1>
         <br />
-        <label>Username:</label>
+        <label>Email:</label>
         <br />
         <input type="text"
-               name="username"
-               value={this.state.username}
+               name="email"
+               value={this.state.email}
                onChange = {this.onChange.bind(this)}
         />
         <br />
@@ -67,7 +56,7 @@ class LogIn extends React.Component {
         <button type="submit">Log In</button>
 
         {isSigninSuccess && <Redirect to= '/profile'/>}
-        {signinError && <div>Invalid Username or Password</div>}
+        {signinError && <div>Invalid Email or Password</div>}
       </form>
 
     );
@@ -83,8 +72,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userSigninRequest: (username, password) => dispatch(userSigninRequest(username, password))
+    userSigninRequest: (email, password) => dispatch(userSigninRequest(email, password))
   }
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn)   // for redux-thunk
+

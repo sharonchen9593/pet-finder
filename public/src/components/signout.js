@@ -7,7 +7,9 @@ class Signout extends React.Component {
     this.props.userSignoutRequest();
   }
   render() {
-    return <div>You are signed out.</div>
+
+    return <div className="page">You are signed out.</div>
+
   }
 }
 

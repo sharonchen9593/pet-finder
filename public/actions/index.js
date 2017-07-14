@@ -8,7 +8,9 @@ export function userSigninRequest(userData) {
     dispatch(setSigninSuccess(false));
     dispatch(setSigninError(null));
 
-    axios.post('/signin', userData)
+
+    axios.post('/login', userData)
+
     .then(function(response) {
       console.log("success", response)
 
@@ -16,7 +18,7 @@ export function userSigninRequest(userData) {
       dispatch({type: SIGNIN_SUCCESS})
 
       localStorage.setItem('token', response.data.token)
-      localStorage.setItem('username', userData.username)
+      localStorage.setItem('email', userData.email)
     })
     .catch(function(error) {
       console.log("failed", error)
@@ -28,7 +30,9 @@ export function userSigninRequest(userData) {
 
 export function userSignoutRequest() {
   localStorage.removeItem('token')
-  localStorage.removeItem('username')
+
+  localStorage.removeItem('email')
+
   localStorage.removeItem('reload')
   return {type: SIGNOUT}
 }
@@ -46,7 +50,9 @@ export function userSignupRequest(userData) {
       dispatch({type: SIGNUP_SUCCESS})
 
       localStorage.setItem('token', response.data.token)
-      localStorage.setItem('username', userData.username)
+
+      localStorage.setItem('email', userData.email)
+
     })
     .catch(function(error) {
       console.log("failed", error)

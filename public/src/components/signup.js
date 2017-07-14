@@ -4,12 +4,13 @@ import {connect} from 'react-redux'
 import {userSignupRequest} from '../../actions';
 import { Redirect } from 'react-router';
 
-class Signup extends React.Component {
+
+class SignUp extends React.Component {
   constructor(props) {
     super(props)
 
     this.state={
-      username: '',
+      email: '',
       password: '',
       confirmPassword: '',
       authenticated: false,
@@ -22,12 +23,16 @@ class Signup extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    var username = this.state.username;
+
+    var email = this.state.email;
+
     var password = this.state.password;
     var confirmPassword = this.state.confirmPassword;
     var self = this;
     if (password === confirmPassword) {
-      this.props.userSignupRequest({username, password})     // for redux-thunk
+
+      this.props.userSignupRequest({email, password})     // for redux-thunk
+
       // axios.post('/signup', {username, password})
       // .then(function(response) {
        //  console.log(response)
@@ -44,18 +49,19 @@ class Signup extends React.Component {
 
   }
 
+
   render() {
     let {isSignupSuccess, signupError} = this.props;
-
     return (
-      <form onSubmit = {this.onSubmit.bind(this)} className = "signinform">
+
+      <form className = "loginform" onSubmit = {this.onSubmit.bind(this)}>
         <h1>Sign Up</h1>
         <br />
-        <label>Username:</label>
+        <label>Email:</label>
         <br />
-        <input type="text"
-               name="username"
-               value={this.state.username}
+        <input type="email"
+               name="email"
+               value={this.state.email}
                onChange = {this.onChange.bind(this)}
         />
         <br />
@@ -77,13 +83,13 @@ class Signup extends React.Component {
         />
         <br />
         <button type="submit">Submit</button>
-
         {isSignupSuccess && <Redirect to= '/profile'/>}
-        {signupError && <div>Invalid Username or Password</div>}
+        {signupError && <div>Invalid Email or Password</div>}
       </form>
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {
@@ -94,9 +100,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userSignupRequest: (username, password) => dispatch(userSignupRequest(username, password))
+    userSignupRequest: (email, password) => dispatch(userSignupRequest(email, password))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup)     // for redux-thunk
-
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

@@ -10,7 +10,6 @@ import reducer from '../actions'
 import App from './components/app';
 import {SIGNIN_SUCCESS} from '../actions'
 
-
 const store = createStore(reducer, {}, applyMiddleware(thunk, logger));
 
 const token=localStorage.getItem('token')
@@ -18,9 +17,9 @@ if(token) {
   store.dispatch({type: SIGNIN_SUCCESS})
 }
 
-ReactDOM.render(	
-	<Provider store={store}>
-<App />	
-</Provider>
-, document.querySelector('.container'))
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.querySelector('.container'))
 

@@ -12,7 +12,9 @@ import Signup from './signup';
 import Home from './home';
 import Random from './random';
 import Shelters from './shelters';
-import NewFund from './newfund'
+import NewFund from './newfund';
+import Profile from './profile';
+import SignOut from './signout';
 
 export default class App extends React.Component {
 	render() {
@@ -30,6 +32,8 @@ export default class App extends React.Component {
 						<Route path="/random" component={Random} />
 						<Route path="/shelters" component={Shelters} />
 						<Route path="/newfund" component={NewFund} />
+						<Route path="/profile" component={Profile} />
+						<Route path="/signout" component={SignOut} />
 				</div>
 			</Router>
 		);
