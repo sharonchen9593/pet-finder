@@ -74,7 +74,7 @@ export default class Home extends React.Component {
 
 
         <div className="banner">
-        <a href="/search">
+        <a href="/shelters">
           <div className="banneritem" style={{backgroundImage: "url('../../images/reptile.jpeg')", height: "100%", width: "14.4%"}}>
           {this.state.pets}
           <br/>
