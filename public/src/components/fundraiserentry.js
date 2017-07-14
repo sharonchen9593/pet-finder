@@ -5,8 +5,8 @@ import axios from 'axios';
 
 const customStyles = {
   content : {
-    top                   : '25%',
-    left                  : '25%',
+    top: '25%',
+    left: '25%',
     width: '50%',
     height: '50%'
   }
