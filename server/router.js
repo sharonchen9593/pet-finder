@@ -2,7 +2,11 @@ var path = require('path');
 var LostAndFound = require('./models/lostandfound');
 var petfinder = require('pet-finder-api')('e8bc141aa160a7c51a8460be64c1a929','12da585d090d6a12d72dac3dee07eb51');
 var Fundraiser = require('./models/donations');
+var Authentication = require('./authentication');
+var passport = require('passport');
+var passportService = require('./services/passport');
 
+var requireSignin = passport.authenticate('local', {session: false});
 
 module.exports=function(app) {
 
@@ -14,9 +18,15 @@ module.exports=function(app) {
     res.sendFile(path.resolve(__dirname + '/../public/index.html'));
   });
 
+  app.post('/login', requireSignin, Authentication.signin, function(req, res) {
+    console.log(req)
+  });
+
   app.get('/signup', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../public/index.html'));
   });
+
+  app.post('/signup', Authentication.signup);
 
 	app.get('/lostandfound', function(req, res){
 		res.sendFile(path.resolve(__dirname + '/../public/index.html'));
@@ -31,6 +41,14 @@ module.exports=function(app) {
   });
 
   app.get('/random', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  });
+
+  app.get('/profile', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  });
+
+  app.get('/signout', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../public/index.html'));
   });
 
