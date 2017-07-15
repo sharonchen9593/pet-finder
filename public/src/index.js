@@ -10,6 +10,7 @@ import reducer from '../actions'
 import App from './components/app';
 import {SIGNIN_SUCCESS} from '../actions'
 
+//this is the store
 const store = createStore(reducer, {}, applyMiddleware(thunk, logger));
 
 const token=localStorage.getItem('token')
