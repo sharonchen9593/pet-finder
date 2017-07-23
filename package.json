@@ -50,6 +50,7 @@
     "react-test-renderer": "^15.6.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "sinon": "^2.3.8",
     "webpack": "^3.0.0"
   }
 }

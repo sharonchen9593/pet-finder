@@ -28,8 +28,9 @@ export default class LostAndFound extends React.Component {
 
   renderEntries() {
     if (this.state.entries.length>0) {
+      console.log('this ran', this.state.entries)
       return (
-        <div>
+        <div className="entries">
         {this.state.entries.map(entry => <LostAndFoundEntry entry={entry} key = {entry._id}/>)}
         </div>
       )
@@ -43,6 +44,9 @@ export default class LostAndFound extends React.Component {
 	render() {
 		return (
 			<div className="page">
+        <div className="test">
+          <div className="test1"> test1</div>
+        </div>
   			<h1 className="lostandFoundHeader">Lost and Found</h1>
         <a href="/newentry"><button className="lostandfoundbutton">New Entry</button></a>
         {this.renderEntries()}

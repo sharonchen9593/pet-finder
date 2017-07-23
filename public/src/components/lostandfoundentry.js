@@ -36,7 +36,9 @@ export default class LostAndFoundEntry extends React.Component {
 
   render() {
     return (
+    
       <div className="entry">
+        <div>Hello</div>
         <div>
           <img src={this.state.imageStr} className="entryImg"/>
         </div>
