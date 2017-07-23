@@ -1,18 +1,18 @@
-import 'jsdom-global/register'
+import 'jsdom-global/register';
 import React from 'react';
 import LostAndFoundEntry from "../src/components/lostandfoundentry";
-var expect = require('chai').expect
-var mount = require('enzyme').mount
-var shallow = require('enzyme').shallow
-var sinon = require('sinon')
-import LostAndFound from '../src/components/lostandfound'
-var axios = require('axios')
+import {expect} from 'chai';
+import {mount, shallow} from 'enzyme';
+import sinon from 'sinon';
+import LostAndFound from '../src/components/lostandfound';
+import axios from 'axios';
+
 
 describe("Lost and Found", function () {
-	let wrapper, shallowWrapper, axiosStub
+	let wrapper, axiosStub;
 	
 	beforeEach(() => {
-		axiosStub = sinon.stub(axios, 'get')
+		axiosStub = sinon.stub(axios, 'get');
 		axiosStub.resolves({data:{
 			email: "email@email.com",
 			phoneNumber: "555-555-5555",
@@ -24,9 +24,9 @@ describe("Lost and Found", function () {
 			animal: "dog",
 			breed: "husky",
 			description: "lost on sat"
-		}})
+		}});
 		wrapper = mount(<LostAndFound />)
-		shallowWrapper = shallow(<LostAndFound/>);
+		// shallowWrapper = shallow(<LostAndFound/>);
 		
 		
 	})
@@ -40,7 +40,7 @@ describe("Lost and Found", function () {
 	
 	it('links to new entry page', () => {
 		expect(
-			shallowWrapper.find('a').prop('href')
+			wrapper.find('a').prop('href')
 		).equal('/newentry')
 	})
 	
@@ -48,5 +48,8 @@ describe("Lost and Found", function () {
 		expect(axiosStub.calledWith('/getallentries')).to.be.true
 	})
 	
+	// it('should contain test1', () => {
+	// 	expect(wrapper).to.have.property('page')
+	// })
 
 })

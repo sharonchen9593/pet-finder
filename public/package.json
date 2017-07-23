@@ -19,6 +19,7 @@
     "pet-finder-api": "^1.0.1",
     "petfinder": "^0.1.1",
     "react": "^15.6.1",
+    "react-addons-test-utils": "^15.6.0",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.6.1",
     "react-google-maps": "^7.1.0",
