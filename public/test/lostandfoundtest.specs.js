@@ -48,8 +48,8 @@ describe("Lost and Found", function () {
 		expect(axiosStub.calledWith('/getallentries')).to.be.true
 	})
 	
-	// it('should contain test1', () => {
-	// 	expect(wrapper).to.have.property('page')
-	// })
+	it('has class entries', () => {
+		expect(wrapper.find('.page').childAt(2).hasClass('loading')).to.equal(true);
+	})
 
 })

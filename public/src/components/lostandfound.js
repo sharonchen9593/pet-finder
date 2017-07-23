@@ -36,7 +36,7 @@ export default class LostAndFound extends React.Component {
       )
     } else {
       return (
-        <div><i className="fa fa-paw fa-spin fa-5x"></i> Loading..</div>
+        <div className="loading"><i className="fa fa-paw fa-spin fa-5x"></i> Loading..</div>
       )
     }
   }
