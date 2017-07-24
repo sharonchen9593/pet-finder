@@ -18,18 +18,6 @@ describe('New Lost And Found Entry', ()=> {
 	let wrapper, component, axiosStub;
 	beforeEach(()=> {
 		axiosStub = sinon.stub(axios, 'post')
-		axiosStub.resolves({data:[{
-			email: "email@email.com",
-			phoneNumber: "555-555-5555",
-			lostOrFound: "lost",
-			imageStr: "123",
-			location: "SF",
-			date: "1/1/2017",
-			petName: "hello",
-			animal: "dog",
-			breed: "husky",
-			description: "lost on sat"
-		}]});
 		wrapper = mount(<NewEntry />)
 		
 	})
@@ -54,9 +42,8 @@ describe('New Lost And Found Entry', ()=> {
 		expect(wrapper.find('button').exists()).to.be.true;
 	})
 	
-	// it('should submit a post request on submit event', () => {
-	//
-	// 	expect(axiosStub.calledWith('/submitnewentry')).to.be.true
-	// 	// axiosStub.verify
-	// })
+	it.only('should submit a post request on submit event', () => {
+		wrapper.find('form').simulate('submit');
+		console.log(axiosStub.calledOnce())
+	})
 });
