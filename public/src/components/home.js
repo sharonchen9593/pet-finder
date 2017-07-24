@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeMap from './homemap'
 import axios from 'axios';
+import $ from 'jquery'
 
 
 

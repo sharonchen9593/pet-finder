@@ -11,9 +11,9 @@ import axios from 'axios';
 describe("Lost and Found", function () {
 	let wrapper, axiosStub;
 	
-	beforeEach(() => {
+	beforeEach((done) => {
 		axiosStub = sinon.stub(axios, 'get');
-		axiosStub.resolves({data:{
+		axiosStub.resolves({data:[{
 			email: "email@email.com",
 			phoneNumber: "555-555-5555",
 			lostOrFound: "lost",
@@ -24,11 +24,11 @@ describe("Lost and Found", function () {
 			animal: "dog",
 			breed: "husky",
 			description: "lost on sat"
-		}});
+		}]});
 		wrapper = mount(<LostAndFound />)
 		// shallowWrapper = shallow(<LostAndFound/>);
-		
-		
+		// return Promise.resolve()
+		done()
 	})
 	
 	afterEach(() => {
@@ -48,8 +48,9 @@ describe("Lost and Found", function () {
 		expect(axiosStub.calledWith('/getallentries')).to.be.true
 	})
 	
-	it('has class entries', () => {
-		expect(wrapper.find('.page').childAt(2).hasClass('loading')).to.equal(true);
+	it('has class entries', (done) => {
+		done()
+		expect(wrapper.find('.page').childAt(2).hasClass('entries')).to.equal(true);
 	})
 
 })
