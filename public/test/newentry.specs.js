@@ -7,17 +7,13 @@ import {mount} from 'enzyme';
 import sinon from 'sinon';
 import axios from 'axios';
 import NewEntry from '../src/components/newentry'
-import {
-	Simulate,
-	renderIntoDocument,
-	findRenderedDOMComponentWithClass,
-	scryRenderedDOMComponentsWithClass
-} from 'react-addons-test-utils';
+
 
 describe('New Lost And Found Entry', ()=> {
-	let wrapper, component, axiosStub;
+	let wrapper, axiosStub;
 	beforeEach(()=> {
 		axiosStub = sinon.stub(axios, 'post')
+		axiosStub.resolves('done')
 		wrapper = mount(<NewEntry />)
 		
 	})
@@ -42,8 +38,8 @@ describe('New Lost And Found Entry', ()=> {
 		expect(wrapper.find('button').exists()).to.be.true;
 	})
 	
-	it.only('should submit a post request on submit event', () => {
+	it('should submit a post request on submit event', () => {
 		wrapper.find('form').simulate('submit');
-		console.log(axiosStub.calledOnce())
+		expect(axiosStub.calledOnce).to.be.true
 	})
 });

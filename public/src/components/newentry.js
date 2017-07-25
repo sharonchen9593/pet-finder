@@ -1,5 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import ReactModal from 'react-modal';
+
+const customStyles = {
+	content : {
+		top: '25%',
+		left: '25%',
+		width: '50%',
+		height: '50%'
+	}
+};
 
 export default class NewEntry extends React.Component {
   constructor(props) {
@@ -45,7 +55,8 @@ export default class NewEntry extends React.Component {
 
   submitData(e) {
 	  e.preventDefault();
-    alert("Please wait, uploading your post")
+    console.log("Please wait, uploading your post")
+    let self = this;
     axios.post('/submitnewentry', JSON.stringify({
       email: this.state.email,
       phoneNumber: this.state.phoneNumber,
@@ -56,13 +67,14 @@ export default class NewEntry extends React.Component {
       dateLostOrFound: this.state.dateLostOrFound,
       animal: this.state.animal,
       breed: this.state.breed,
-      description: this.state.description
+      description: this.state.description,
+      showModal: false
     }))
     .then(function(response) {
-      alert("Your new entry has been submitted")
+      self.handleOpenModal.call(self)
     })
     .catch(function(err) {
-      alert("Your image is too big, please resize image and try again")
+      console.log("Your image is too big, please resize image and try again")
     })
   }
 
@@ -102,6 +114,14 @@ export default class NewEntry extends React.Component {
     let value = event.target.value;
     this.setState({[name]: value})
   }
+	
+	handleOpenModal () {
+		this.setState({ showModal: true });
+	}
+	
+	handleCloseModal () {
+		this.setState({ showModal: false });
+	}
 
   render() {
     return (
@@ -184,8 +204,19 @@ export default class NewEntry extends React.Component {
           <br/>
           <button type="submit" className="lostandfoundbutton">Submit</button>
         </form>
-
-
+  
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel="Success"
+          style={customStyles}
+        >
+          <button onClick={this.handleCloseModal.bind(this)}>Close</button>
+            <br/>
+            <label>Your entry has been submitted.</label>
+            
+        </ReactModal>
+        
+        
       </div>
     )
   }
