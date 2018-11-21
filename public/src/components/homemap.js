@@ -46,7 +46,6 @@ class Map extends React.Component {
           option: {color: 'red'},
           addHandler: {
             type: 'click',
-            callback: self.handlePinClick,
           }
         }
         shelterMarkers.push(mark)
