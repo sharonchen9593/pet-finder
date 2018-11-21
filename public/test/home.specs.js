@@ -11,12 +11,21 @@ describe("Home Page", () => {
 	var wrapper, stub;
 	beforeEach(() => {
 		wrapper = shallow(<Home />)
-		stub = sinon.stub($, "get")
-		//stub.resolve("<div id='welcome-pet-total'>111,000</div><div id='welcome-shelter-total'>11,000</div>")
+		stub = sinon.stub($, 'ajax')
+		
+		function okResponse() {
+			var d = $.Deferred();
+			d.resolve( { username: "testuser", userid: "userid", success: true } );
+			return d.promise();
+		};
+		
+		stub.returns(okResponse());
+		//stub.yieldsTo()
+		//stub.yieldsTo("success", "<div id='welcome-pet-total'>111,000</div><div id='welcome-shelter-total'>11,000</div>")
 	});
 	
 	afterEach(() => {
-		$.get.restore()
+		$.ajax.restore()
 	})
 	
 	it('should render component', () => {
@@ -40,8 +49,8 @@ describe("Home Page", () => {
 		expect(wrapper.find(".banner").children()).to.have.length(7)
 	})
 	
-	// / it('should call API on component mount', () => {
-	// 	expect(stub.calledWith('https://cors-anywhere.herokuapp.com/https://www.petfinder.com/')).to.equal(true)
+	// it('should call API on component mount', () => {
+	// 	expect($.ajax.calledOnce).to.be.true
 	// })
 
 	

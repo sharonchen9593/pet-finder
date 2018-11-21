@@ -15,6 +15,39 @@ class Map extends React.Component {
     }
   }
 
+  // componentDidMount() {
+  //   const script = document.createElement('script');
+  //    script.src = './sdk/tomtom.min.js';
+  //    document.body.appendChild(script);
+  //    script.async = true;
+  //    script.onload = function () {
+  //      window.tomtom.L.map('map', {
+  //        source: 'vector',
+  //        key: 'AkXXEjhxImrro7wWpQIDniNx1iVNirqy',
+  //        center: [37.769167, -122.478468],
+  //        basePath: '/sdk',
+  //        zoom: 15
+  //      });
+  //    }
+  // }
+
+  // componentDidUpdate(prevProps) {
+  //   const newState = {}
+  //   if (this.props.center.lng !== this.state.lng) {
+  //     newState.lng = this.props.center.lng
+  //   }
+
+  //   if (this.props.center.lat !== this.state.lat) {
+  //     newState.lat = this.props.lat
+  //   }
+
+  //   if (newState.lat || newState.lng) {
+  //     this.setState(() => (newState))
+  //   }
+
+  // }
+
+
   changeState(lat, lng, zoom) {
 
     this.setState({lat: lat, lng: lng, zoom: zoom}, this.getPets(lat, lng))

@@ -26,36 +26,11 @@ export default class NewEntry extends React.Component {
       description: '',
       petName: ''
     }
-    //this.handleInputChange = this.handleInputChange.bind(this)
   }
-
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   var email = document.getElementsByName('email')[0].value
-  //   var phoneNumber = document.getElementsByName('phoneNumber')[0].value
-  //   var location = document.getElementsByName('location')[0].value
-  //   var petName = document.getElementsByName('petName')[0].value
-  //   var dateLostOrFound = document.getElementsByName('dateLostOrFound')[0].value
-  //   var animal = document.getElementsByName('animal')[0].value
-  //   var breed = document.getElementsByName('breed')[0].value
-  //   var description = document.getElementsByName('description')[0].value
-  //   this.setState({
-  //     email,
-  //     phoneNumber,
-  //     location,
-  //     petName,
-  //     dateLostOrFound,
-  //     animal,
-  //     breed,
-  //     description
-  //   }, function() {
-  //     this.submitData()
-  //   })
-  // }
+  
 
   submitData(e) {
 	  e.preventDefault();
-    console.log("Please wait, uploading your post")
     let self = this;
     axios.post('/submitnewentry', JSON.stringify({
       email: this.state.email,

@@ -1,5 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import ReactModal from 'react-modal';
+
+const customStyles = {
+	content : {
+		top: '25%',
+		left: '25%',
+		width: '50%',
+		height: '50%'
+	}
+};
 
 export default class NewFund extends React.Component {
   constructor(props) {
@@ -15,37 +25,14 @@ export default class NewFund extends React.Component {
       venmo: '',
       paypal: '',
       goal: '',
-      donationsReceived: 0
+      donationsReceived: 0,
+      showModal: false
     }
   }
 
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   var email = document.getElementsByName('email')[0].value
-  //   var phoneNumber = document.getElementsByName('phoneNumber')[0].value
-  //   var location = document.getElementsByName('location')[0].value
-  //   var title = document.getElementsByName('title')[0].value
-  //   var venmo = document.getElementsByName('venmo')[0].value
-  //   var paypal = document.getElementsByName('paypal')[0].value
-  //   var goal = document.getElementsByName('goal')[0].value
-  //   var description = document.getElementsByName('description')[0].value
-  //   this.setState({
-  //     email,
-  //     phoneNumber,
-  //     location,
-  //     title,
-  //     venmo,
-  //     paypal,
-  //     description,
-  //     goal
-  //   }, function() {
-  //     this.submitData()
-  //   })
-  // }
-
   submitData(e) {
 	  e.preventDefault();
-    alert("Please wait, uploading your post")
+    let self = this;
     axios.post('/submitnewfundraiser', JSON.stringify({
       email: this.state.email,
       phoneNumber: this.state.phoneNumber,
@@ -60,10 +47,10 @@ export default class NewFund extends React.Component {
       donationsReceived: this.state.donationsReceived
     }))
     .then(function(response) {
-      alert("Your new entry has been submitted")
+	    self.handleOpenModal.call(self)
     })
     .catch(function(err) {
-      alert("Your image is too big, please resize image and try again")
+      console.log("Your image is too big, please resize image and try again")
     })
   }
 
@@ -103,7 +90,15 @@ export default class NewFund extends React.Component {
 		let value = event.target.value;
 		this.setState({[name]: value})
 	}
-
+	
+	handleOpenModal () {
+		this.setState({ showModal: true });
+	}
+	
+	handleCloseModal () {
+		this.setState({ showModal: false });
+	}
+	
   render() {
     return (
       <div className="page newentry">
@@ -185,7 +180,17 @@ export default class NewFund extends React.Component {
           <br/>
           <button type="submit" className="lostandfoundbutton">Submit</button>
         </form>
-
+  
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel="Success"
+          style={customStyles}
+        >
+          <button onClick={this.handleCloseModal.bind(this)}>Close</button>
+          <br/>
+          <label>Your entry has been submitted.</label>
+  
+        </ReactModal>
 
       </div>
     )

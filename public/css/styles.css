@@ -3,7 +3,7 @@
 }
 
 .page {
-  margin-top: 50px;
+  margin: 10px -20px;
 }
 
 .searchbox {
@@ -25,18 +25,14 @@
   float: left;
 }
 
+.homebg div {
+  padding: 50px;
+}
+
 .homemap {
   width: 50%;
   height: 70%;
   float: left;
-}
-
-.banner {
-  height: 20%;
-}
-
-.bannerimg {
-
 }
 
 .map {

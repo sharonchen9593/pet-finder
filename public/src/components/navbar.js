@@ -1,26 +1,22 @@
 import React from 'react';
-import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 export default class NavBar extends React.Component {
 	render() {
 		return (
-			<Navbar fixedTop inverse>
-				<Navbar.Header>
-					<Navbar.Brand>
-						<a href="/">Furry Friends</a>
-					</Navbar.Brand>
-					<Nav>
-						<NavItem href="/shelters">Search Shelters</NavItem>
-					</Nav>
-				</Navbar.Header>
-				<Nav pullRight>
-					<NavItem href="/lostandfound">Lost and Found</NavItem>
-					<NavItem href="/donate">Donate/Fundraise</NavItem>
-					<NavItem href="/login">Log In</NavItem>
-					<NavItem href="/signup">Sign Up</NavItem>
-
-				</Nav>
-			</Navbar>
+			<div className="nav">
+				<div className="nav-item-logo">
+					<a className="nav-item" href="/">Furry Friends</a>
+				</div>
+				<div className="nav-item-left">
+					<a className="nav-item">Search Shelters</a>
+				</div>
+				<div className="nav-item-right">
+					<a className="nav-item" href="/lostandfound">Lost and Found</a>
+					<a className="nav-item" href="/donate">Donate/Fundraise</a>
+					<a className="nav-item" href="/login">Log In</a>
+					<a className="nav-item" href="/signup">Sign Up</a>
+				</div>
+			</div>
 		)
 	}
 }

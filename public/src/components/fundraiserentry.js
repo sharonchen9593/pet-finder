@@ -150,21 +150,21 @@ export default class FundraiserEntry extends React.Component {
           >
           Donate</button>
           <ReactModal
-           isOpen={this.state.showModal}
-           contentLabel="Donate"
-           style={customStyles}
+          isOpen={this.state.showModal}
+          contentLabel="Donate"
+          style={customStyles}
         >
           <button onClick={this.handleCloseModal.bind(this)}>Close</button>
           <div>
-            {this.renderDonationComponent()}
+		        {this.renderDonationComponent()}
           </div>
           <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>Please submit amount donated so we can keep track </label>
-          <br />
-
-          <input type="number" name="amountDonated" required/>
-          <br />
-          <button type="submit" className="lostandfoundbutton">Submit Donation</button>
+            <label>Please submit amount donated so we can keep track </label>
+            <br />
+    
+            <input type="number" name="amountDonated" required/>
+            <br />
+            <button type="submit" className="lostandfoundbutton">Submit Donation</button>
           </form>
         </ReactModal>
         </div>

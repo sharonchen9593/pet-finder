@@ -27,30 +27,36 @@ describe("Lost and Found", function () {
 		}]});
 		wrapper = mount(<LostAndFound />)
 		// shallowWrapper = shallow(<LostAndFound/>);
-		// return Promise.resolve()
+		return Promise.resolve()
 		done()
-	})
+	});
 	
 	afterEach(() => {
 		axios.get.restore()
-	})
+	});
 	it('should create object', () => {
 		expect(LostAndFound.prototype).to.not.be.null;
-	})
+	});
 	
 	it('links to new entry page', () => {
 		expect(
 			wrapper.find('a').prop('href')
 		).equal('/newentry')
-	})
+	});
 	
-	it('should call axios on component mount', () => {
+	it('should call axios get request to "/getallentries" on component mount', () => {
 		expect(axiosStub.calledWith('/getallentries')).to.be.true
-	})
+	});
 	
-	it('has class entries', (done) => {
-		done()
-		expect(wrapper.find('.page').childAt(2).hasClass('entries')).to.equal(true);
-	})
+	it('should call axios once on component mount', () => {
+		expect(axiosStub.calledOnce).to.be.true
+	});
+	
+	it('has class entries', () => {
+		setTimeout(()=>{
+			expect(wrapper.find('.page').childAt(2).hasClass('entries')).to.equal(true);
+			
+		}, 300)
+	});
 
-})
+});

@@ -42,4 +42,10 @@ describe('New Lost And Found Entry', ()=> {
 		wrapper.find('form').simulate('submit');
 		expect(axiosStub.calledOnce).to.be.true
 	})
+	
+	it('should submit a post request to "/submitnewentry"', () => {
+		wrapper.find('form').simulate('submit');
+		expect(axiosStub.calledWith('/submitnewentry')).to.be.true
+	})
+	
 });
