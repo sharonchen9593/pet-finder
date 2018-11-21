@@ -23,12 +23,10 @@ class Map extends React.Component {
 
   getZipCode() {
     var self = this
-    console.log('getting zipcode')
 
-    axios.get('http://dev.virtualearth.net/REST/v1/Locations/'+ this.state.lat + ',' + this.state.lng +'?o=json&key=AuRbcAwIx_0SzaiLUyuQpivMdgWDYnZQUc8k813y_OyiOZXB0nrc-pU4szXm1HfF')
+    axios.get('https://dev.virtualearth.net/REST/v1/Locations/'+ this.state.lat + ',' + this.state.lng +'?o=json&key=AuRbcAwIx_0SzaiLUyuQpivMdgWDYnZQUc8k813y_OyiOZXB0nrc-pU4szXm1HfF')
     .then(function(res){
       var zipcode = res.data.resourceSets[0].resources[0].address.postalCode
-      console.log(zipcode)
       self.setState({zipcode}, self.getShelters.bind(self))
     })
     .catch(function(err) {
@@ -36,16 +34,11 @@ class Map extends React.Component {
     })
   }
 
-  handlePinClick() {
-    console.log('click')
-  }
-
   getShelters() {
     var shelterMarkers = [];
     var self = this;
     axios.get('https://cors-anywhere.herokuapp.com/https://api.petfinder.com/shelter.find?format=json&key=e8bc141aa160a7c51a8460be64c1a929&location='+ this.state.zipcode +'&count=100')
     .then(function(res) {
-      console.log('petfinder', res)
       var shelters = res.data.petfinder.shelters.shelter
       shelters.forEach(function(shelter) {
         var mark = {
@@ -66,7 +59,6 @@ class Map extends React.Component {
   }
 
   render() {
-    console.log(this.state.markers)
     return (
       <ReactBingmaps
         bingmapKey="Apaf0GP4Jgi3QQuJI5ViTadfDyoub9tcHiynfTaZxRMEQIBQg1S94TihbBuexxIf"
