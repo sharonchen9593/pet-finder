@@ -29,18 +29,6 @@
   padding: 50px;
 }
 
-.homemap {
-  width: 50%;
-  height: 70%;
-  float: left;
-}
-
-.map {
-  width: 50%;
-  height: 85%;
-  float: left;
-}
-
 .searchResults {
   width: 50%;
   height: 85%;

@@ -66,9 +66,6 @@ export default class Home extends React.Component {
         <a href="/shelters"><div className="homemap">
           <HomeMap
             center={{lat:this.state.lat, lng: this.state.lng}}
-            zoom={this.state.zoom}
-            containerElement={<div style={{height: '100%'}} />}
-            mapElement={<div style={{height: '100%'}} />}
           />
         </div>
         </a>

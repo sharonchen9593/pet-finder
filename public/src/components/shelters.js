@@ -62,9 +62,6 @@ export default class Shelters extends React.Component {
         <div className="sheltermap">
           <ShelterMap
             center={{lat:this.state.lat, lng: this.state.lng}}
-            zoom={this.state.zoom}
-            containerElement={<div style={{height: '100%'}} />}
-            mapElement={<div style={{height: '100%'}} />}
             clickedShelter = {this.clickedShelter.bind(this)}
             />
 
